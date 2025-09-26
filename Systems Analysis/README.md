@@ -3,6 +3,26 @@
 ## Workshop 1 — Systems Analysis & Design  
 ### Forest Cover Type Prediction (Kaggle Competition)  
 
+---
+
+## Introduction  
+This repository was created as part of **Workshop 1** for the *Systems Analysis & Design* course.  
+Our group selected the Kaggle competition **[Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction)**, which is a supervised classification challenge. The objective is to predict the **forest cover type** (7 possible classes) from cartographic variables such as elevation, slope, soil type, and proximity to hydrology, roads, and fire points.  
+
+The purpose of this project is not only to explore the dataset, but also to apply **systems thinking** and **engineering analysis**. We analyze the system’s complexity, sensitivity to variables, and possible non-linear or chaotic behaviors, connecting machine learning challenges with systemic perspectives.  
+
+---
+
+## Authors  
+This work was developed by **Group X** for the *Systems Analysis & Design* course:  
+- [Nicolás Martínez Pineda]  
+- [Anderson Danilo Bonilla]  
+- [Gabriel Gutierrez]  
+- [Jean Contreras]  
+
+---
+
+
 ## Overview  
 This repository contains the deliverables for **Workshop 1** of the *Systems Analysis & Design* course.  
 The selected competition is [Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction), a supervised classification problem where the task is to predict the type of forest cover (7 categories) based on cartographic variables such as elevation, slope, soil type, and distance to hydrology, roads, and fire points.  
