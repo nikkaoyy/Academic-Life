@@ -81,11 +81,6 @@ This repository will continue to evolve as the course progresses.
 
 ---
 
-## Deadline  
-All deliverables for **Workshop 1** were submitted by **Saturday, September 27th, 2025 at 8:00 AM**, according to course policy.  
-
----
-
 ## References  
 - Kaggle: [Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction)  
 - Systems Engineering principles (course material).  
