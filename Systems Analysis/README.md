@@ -33,13 +33,13 @@ The workshop focuses on applying **systems thinking** and **engineering analysis
 
 ## Repository Structure  
 Workshop_1/
- - README.md # Documentation of the workshop process
- - report.pdf # Final report (in English, PDF format)
- - diagrams/ # Folder containing system diagrams (architecture, flows, relationships)
-    - forest_system.png
- - code/ # (Optional) Scripts or notebooks for sensitivity analysis or data exploration
-    - exploratory.ipynb
-
+ - **Work_Summary.md:** Documentation of the workshop process
+ - **SystemKaggleAnalysis.pdf** # Final report of the System Analysis of the Kaggle's Competition (PDF and IEEE format)
+ - **FlowSystemChart.pdf**: Visual diagrams of the competition made in Draw.io
+ - **DATASET.zip** The training and test data, submited in .csv
+- **NotebookPython**: Folder that contains the suministrated data.
+    - data_grafica.py: Jupyter notebook of the data
+    - lectura_consola.py: Data showed in the console
 
 ---
 
