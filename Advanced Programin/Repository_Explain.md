@@ -13,3 +13,4 @@ The purpose of this course is to strengthen problem-solving abilities and deepen
 - Practice **clean code** and **best programming practices**.  
 - Gain experience with **version control systems (Git & GitHub)**.  
 
+---
