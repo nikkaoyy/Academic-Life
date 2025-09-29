@@ -15,7 +15,7 @@ The project demonstrates skills in:
 
 ## Author
 **Nicolás Martínez Pineda**  
-Systems Engineering Student, 3rd Semester  
+Systems Engineering Student, 4th Semester  
 Bogotá D.C., Colombia  
 
 ---
