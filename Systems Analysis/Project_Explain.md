@@ -1,7 +1,7 @@
 # 🌲 Forest Cover Type Prediction — Kaggle Competition  
 
 ## 📌 Overview  
-This repository is dedicated to the Kaggle competition **[Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction)**.  
+This repository is dedicated to the Kaggle competition **[Forest Cover Type Prediction](https://www.kaggle.com/competitions/forest-cover-type-prediction)** and the Analysis and Design of Complex Systems.  
 The challenge is a **supervised multiclass classification problem** where the task is to predict the **forest cover type** (7 possible classes) from cartographic variables such as:  
 - Elevation  
 - Slope and aspect  
