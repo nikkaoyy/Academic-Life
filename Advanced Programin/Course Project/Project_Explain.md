@@ -2,7 +2,7 @@
 
 ## Overview
 This repository contains the implementation of my **Advanced Programming** course project.  
-The goal of this work is to apply modern programming paradigms, design principles, and problem-solving strategies to develop efficient and well-structured software solutions.
+This work aims to leverage modern programming paradigms, design principles, and problem-solving strategies to develop efficient and well-structured software solutions for the medical sector, specifically addressing the slow pace of medication delivery within EPS systems to expedite access for patients in need.
 
 The project demonstrates skills in:
 - Object-Oriented Programming (OOP)
