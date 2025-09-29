@@ -17,8 +17,7 @@ The purpose of this project is not only to explore the dataset, but also to appl
 This work was developed by **Group 5** for the *Systems Analysis & Design* course:  
 - [Nicolás Martínez Pineda]  
 - [Anderson Danilo Bonilla]  
-- [Gabriel Gutierrez]  
-- [Jean Contreras]  
+- [Jean Paul Contreras]  
 
 ---
 
