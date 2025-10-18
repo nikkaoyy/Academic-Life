@@ -18,7 +18,6 @@ This project combines **machine learning** with **systems thinking**, analyzing 
 Developed by **Group X** for the *Systems Analysis & Design* course:  
 - Nicolás Martínez Pineda 
 - Anderson Danilo Bonilla
-- Gabriel Gutierrez 
 - Jean Contreras
 
 ---
