@@ -15,7 +15,7 @@ This project combines **machine learning** with **systems thinking**, analyzing 
 ---
 
 ## 👥 Authors  
-Developed by **Group X** for the *Systems Analysis & Design* course:  
+Developed by **Group 5** for the *Systems Analysis & Design* course:  
 - Nicolás Martínez Pineda 
 - Anderson Danilo Bonilla
 - Jean Contreras
