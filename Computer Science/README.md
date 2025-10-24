@@ -1,0 +1,1 @@
+This repository documents my journey through core Computer Science concepts, with hands-on implementations of algorithms, data structures, and computational problem-solving techniques. Each module is built with emphasis on clarity, performance analysis, and deep understanding through practical experimentation.
