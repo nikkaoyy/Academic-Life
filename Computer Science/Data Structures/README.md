@@ -1,7 +1,7 @@
 # 🧩 Data Structures  
 **Repository:** Computer Science  
 
-This module contains fundamental implementations of **data structures** in C++, designed to strengthen understanding of dynamic memory, pointer manipulation, and data abstraction through templates.  
+This module contains fundamental implementations of **data structures** in C++, designed to strengthen the understanding of dynamic memory, pointer manipulation, and data abstraction through the use of templates.  
 
 ---
 
@@ -19,17 +19,17 @@ This module contains fundamental implementations of **data structures** in C++, 
 
 ## ⚙️ Code Structure
 
-### `lista.h`
-Contains the template class `Lista<T>` and the structure `Nodo<T>`:
+### `(structure name).h`
+Contains the template class `(Structure name)<T>` and the structure `Nodo<T>`:
 - Insert at the beginning, end, or a specific position  
-- Delete nodes by position  
+- Delete or add nodes by position
 - Search and modify elements  
 - Retrieve current list size via `getTam()`  
 
 ### `main.cpp`
 Main program that:
-1. Creates three lists (integers, floats, and characters)  
-2. Inserts 10 elements in various positions  
+1. Creates the data structure (lists, stacks, trees, etc)  
+2. Insert elements in various positions  
 3. Performs search, deletion, modification, and full list printing  
 
 ---
