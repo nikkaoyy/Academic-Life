@@ -2,7 +2,7 @@
 
 ### Systems Analysis & Design — 2025-III  
 **Universidad Distrital Francisco José de Caldas**  
-**Computer Engineering Program**
+**System Engineering Program**
 
 ---
 
