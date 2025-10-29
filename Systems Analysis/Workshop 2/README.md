@@ -203,10 +203,4 @@ This repository is developed for academic purposes as part of the **Computer Eng
 
 ---
 
-## 📧 Contact
-
-For questions or collaboration inquiries, please contact team members through the university’s official channels.
-
----
-
 > **Note:** This document represents a conceptual design. All performance metrics are design targets pending empirical validation during subsequent implementation phases.
