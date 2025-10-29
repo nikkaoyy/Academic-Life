@@ -1,6 +1,6 @@
-// Universidad Distrital Francisco JosÈ de Caldas
+// Universidad Distrital Francisco Jos√© de Caldas
 //
-// Hecho por: Nicol·s MartÌnez Pineda && Ian Nicol·s Sandoval MartÌnez 
+// Hecho por: Nicol√°s Mart√≠nez Pineda && Ian Nicol√°s Sandoval Mart√≠nez 
 //
 //
 #include <iostream>
@@ -23,19 +23,19 @@ struct Persona {
     // Constructor por defecto
     Persona() : cedula(""), nombre(""), codigoEstudiante(""), carrera(""), edad(0) {}
     
-    // Constructor con par·metros
+    // Constructor con par√°metros
     Persona(string ced, string nom, string cod, string car, int ed) 
         : cedula(ced), nombre(nom), codigoEstudiante(cod), carrera(car), edad(ed) {}
 };
 
-// FunciÛn para imprimir una persona
+// Funci√≥n para imprimir una persona
 void imprimirPersona(const Persona& p) {
-    cout << "CÈdula: " << p.cedula << " | Nombre: " << p.nombre 
-         << " | CÛdigo: " << p.codigoEstudiante << " | Carrera: " << p.carrera 
+    cout << "C√©dula: " << p.cedula << " | Nombre: " << p.nombre 
+         << " | C√≥digo: " << p.codigoEstudiante << " | Carrera: " << p.carrera 
          << " | Edad: " << p.edad;
 }
 
-// FunciÛn para cargar datos desde archivo
+// Funci√≥n para cargar datos desde archivo
 void cargar_desde_archivo(ListaDoble<Persona>& lista, const string& nombreArchivo) {
     ifstream archivo(nombreArchivo.c_str());
     if (!archivo.is_open()) {
@@ -47,7 +47,7 @@ void cargar_desde_archivo(ListaDoble<Persona>& lista, const string& nombreArchiv
     lista.vaciar_lista();
     
     string linea;
-    // Saltar la primera lÌnea si es un encabezado
+    // Saltar la primera l√≠nea si es un encabezado
     getline(archivo, linea);
     
     while (getline(archivo, linea)) {
@@ -70,7 +70,7 @@ void cargar_desde_archivo(ListaDoble<Persona>& lista, const string& nombreArchiv
     cout << "Datos cargados exitosamente. Total: " << lista.getTam() << " personas.\n";
 }
 
-// FunciÛn para guardar datos en archivo
+// Funci√≥n para guardar datos en archivo
 void guardar_en_archivo(ListaDoble<Persona>& lista, const string& nombreArchivo) {
     ofstream archivo(nombreArchivo.c_str());
     if (!archivo.is_open()) {
@@ -94,74 +94,74 @@ void guardar_en_archivo(ListaDoble<Persona>& lista, const string& nombreArchivo)
     cout << "Datos guardados exitosamente en: " << nombreArchivo << endl;
 }
 
-// FunciÛn para buscar por cÈdula
+// Funci√≥n para buscar por c√©dula
 void buscar_por_cedula(ListaDoble<Persona>& lista, const string& cedula) {
     for (int i = 0; i < lista.getTam(); i++) {
         Persona p = lista.obtenerDato(i);
         if (p.cedula == cedula) {
-            cout << "\n=== Persona encontrada en posiciÛn " << i << " ===\n";
+            cout << "\n=== Persona encontrada en posici√≥n " << i << " ===\n";
             imprimirPersona(p);
             cout << endl;
             return;
         }
     }
-    cout << "No se encontrÛ ninguna persona con cÈdula: " << cedula << endl;
+    cout << "No se encontr√≥ ninguna persona con c√©dula: " << cedula << endl;
 }
 
-// FunciÛn para buscar por cÛdigo
+// Funci√≥n para buscar por c√≥digo
 void buscar_por_codigo(ListaDoble<Persona>& lista, const string& codigo) {
     for (int i = 0; i < lista.getTam(); i++) {
         Persona p = lista.obtenerDato(i);
         if (p.codigoEstudiante == codigo) {
-            cout << "\n=== Estudiante encontrado en posiciÛn " << i << " ===\n";
+            cout << "\n=== Estudiante encontrado en posici√≥n " << i << " ===\n";
             imprimirPersona(p);
             cout << endl;
             return;
         }
     }
-    cout << "No se encontrÛ ning˙n estudiante con cÛdigo: " << codigo << endl;
+    cout << "No se encontr√≥ ning√∫n estudiante con c√≥digo: " << codigo << endl;
 }
 
-// FunciÛn para eliminar por cÈdula
+// Funci√≥n para eliminar por c√©dula
 void eliminar_por_cedula(ListaDoble<Persona>& lista, const string& cedula) {
     for (int i = 0; i < lista.getTam(); i++) {
         Persona p = lista.obtenerDato(i);
         if (p.cedula == cedula) {
             lista.eliminar(i);
-            cout << "Persona con cÈdula " << cedula << " eliminada exitosamente.\n";
+            cout << "Persona con c√©dula " << cedula << " eliminada exitosamente.\n";
             return;
         }
     }
-    cout << "No se encontrÛ ninguna persona con cÈdula: " << cedula << endl;
+    cout << "No se encontr√≥ ninguna persona con c√©dula: " << cedula << endl;
 }
 
 int main() {
     // Creamos la lista de personas
     ListaDoble<Persona> listaPersonas;
     
-    // Variables para el men˙
+    // Variables para el men√∫
     int opcion, pos;
     string nombreArchivo = "personas.txt";
     
     cout << "=== PROGRAMA DE LISTA DOBLEMENTE ENLAZADA - PERSONAS ===\n";
     
     do {
-        cout << "\nSeleccione una acciÛn:\n";
+        cout << "\nSeleccione una acci√≥n:\n";
         cout << "1. Cargar datos desde archivo\n";
         cout << "2. Agregar persona al inicio\n";
         cout << "3. Agregar persona al final\n";
-        cout << "4. Insertar persona en posiciÛn\n";
+        cout << "4. Insertar persona en posici√≥n\n";
         cout << "5. Mostrar todas las personas\n";
-        cout << "6. Buscar persona por posiciÛn\n";
-        cout << "7. Buscar por cÈdula\n";
-        cout << "8. Buscar por cÛdigo de estudiante\n";
+        cout << "6. Buscar persona por posici√≥n\n";
+        cout << "7. Buscar por c√©dula\n";
+        cout << "8. Buscar por c√≥digo de estudiante\n";
         cout << "9. Modificar persona\n";
-        cout << "10. Eliminar persona por posiciÛn\n";
-        cout << "11. Eliminar persona por cÈdula\n";
+        cout << "10. Eliminar persona por posici√≥n\n";
+        cout << "11. Eliminar persona por c√©dula\n";
         cout << "12. Guardar datos en archivo\n";
-        cout << "13. TamaÒo de la lista\n";
+        cout << "13. Tama√±o de la lista\n";
         cout << "0. Salir\n";
-        cout << "OpciÛn: ";
+        cout << "Opci√≥n: ";
         cin >> opcion;
         cin.ignore(); // Limpiar buffer
 
@@ -176,11 +176,11 @@ int main() {
                     string cedula, nombre, codigo, carrera;
                     int edad;
                     
-                    cout << "Ingrese cÈdula: ";
+                    cout << "Ingrese c√©dula: ";
                     getline(cin, cedula);
                     cout << "Ingrese nombre: ";
                     getline(cin, nombre);
-                    cout << "Ingrese cÛdigo de estudiante: ";
+                    cout << "Ingrese c√≥digo de estudiante: ";
                     getline(cin, codigo);
                     cout << "Ingrese carrera: ";
                     getline(cin, carrera);
@@ -198,11 +198,11 @@ int main() {
                     string cedula, nombre, codigo, carrera;
                     int edad;
                     
-                    cout << "Ingrese cÈdula: ";
+                    cout << "Ingrese c√©dula: ";
                     getline(cin, cedula);
                     cout << "Ingrese nombre: ";
                     getline(cin, nombre);
-                    cout << "Ingrese cÛdigo de estudiante: ";
+                    cout << "Ingrese c√≥digo de estudiante: ";
                     getline(cin, codigo);
                     cout << "Ingrese carrera: ";
                     getline(cin, carrera);
@@ -217,18 +217,18 @@ int main() {
                 }
 
                 case 4: {
-                    cout << "Ingrese la posiciÛn: ";
+                    cout << "Ingrese la posici√≥n: ";
                     cin >> pos;
                     cin.ignore();
                     
                     string cedula, nombre, codigo, carrera;
                     int edad;
                     
-                    cout << "Ingrese cÈdula: ";
+                    cout << "Ingrese c√©dula: ";
                     getline(cin, cedula);
                     cout << "Ingrese nombre: ";
                     getline(cin, nombre);
-                    cout << "Ingrese cÛdigo de estudiante: ";
+                    cout << "Ingrese c√≥digo de estudiante: ";
                     getline(cin, codigo);
                     cout << "Ingrese carrera: ";
                     getline(cin, carrera);
@@ -238,17 +238,17 @@ int main() {
                     
                     Persona p(cedula, nombre, codigo, carrera, edad);
                     listaPersonas.insertar_pos(p, pos);
-                    cout << "Persona insertada en posiciÛn " << pos << ".\n";
+                    cout << "Persona insertada en posici√≥n " << pos << ".\n";
                     break;
                 }
 
                 case 5: {
                     if (listaPersonas.lista_vacia()) {
-                        cout << "La lista est· vacÌa.\n";
+                        cout << "La lista est√° vac√≠a.\n";
                     } else {
                         cout << "\n=== LISTA COMPLETA DE PERSONAS ===\n";
                         for (int i = 0; i < listaPersonas.getTam(); i++) {
-                            cout << "PosiciÛn " << i << ": ";
+                            cout << "Posici√≥n " << i << ": ";
                             imprimirPersona(listaPersonas.obtenerDato(i));
                             cout << endl;
                         }
@@ -257,10 +257,10 @@ int main() {
                 }
 
                 case 6: {
-                    cout << "Ingrese la posiciÛn a buscar: ";
+                    cout << "Ingrese la posici√≥n a buscar: ";
                     cin >> pos;
                     cin.ignore();
-                    cout << "\n=== Persona en posiciÛn " << pos << " ===\n";
+                    cout << "\n=== Persona en posici√≥n " << pos << " ===\n";
                     imprimirPersona(listaPersonas.obtenerDato(pos));
                     cout << endl;
                     break;
@@ -268,7 +268,7 @@ int main() {
 
                 case 7: {
                     string cedula;
-                    cout << "Ingrese cÈdula a buscar: ";
+                    cout << "Ingrese c√©dula a buscar: ";
                     getline(cin, cedula);
                     buscar_por_cedula(listaPersonas, cedula);
                     break;
@@ -276,25 +276,25 @@ int main() {
 
                 case 8: {
                     string codigo;
-                    cout << "Ingrese cÛdigo de estudiante: ";
+                    cout << "Ingrese c√≥digo de estudiante: ";
                     getline(cin, codigo);
                     buscar_por_codigo(listaPersonas, codigo);
                     break;
                 }
 
                 case 9: {
-                    cout << "Ingrese la posiciÛn a modificar: ";
+                    cout << "Ingrese la posici√≥n a modificar: ";
                     cin >> pos;
                     cin.ignore();
                     
                     string cedula, nombre, codigo, carrera;
                     int edad;
                     
-                    cout << "Ingrese nueva cÈdula: ";
+                    cout << "Ingrese nueva c√©dula: ";
                     getline(cin, cedula);
                     cout << "Ingrese nuevo nombre: ";
                     getline(cin, nombre);
-                    cout << "Ingrese nuevo cÛdigo: ";
+                    cout << "Ingrese nuevo c√≥digo: ";
                     getline(cin, codigo);
                     cout << "Ingrese nueva carrera: ";
                     getline(cin, carrera);
@@ -309,7 +309,7 @@ int main() {
                 }
 
                 case 10: {
-                    cout << "Ingrese la posiciÛn a eliminar: ";
+                    cout << "Ingrese la posici√≥n a eliminar: ";
                     cin >> pos;
                     cin.ignore();
                     listaPersonas.eliminar(pos);
@@ -319,7 +319,7 @@ int main() {
 
                 case 11: {
                     string cedula;
-                    cout << "Ingrese cÈdula a eliminar: ";
+                    cout << "Ingrese c√©dula a eliminar: ";
                     getline(cin, cedula);
                     eliminar_por_cedula(listaPersonas, cedula);
                     break;
@@ -331,7 +331,7 @@ int main() {
                 }
 
                 case 13: {
-                    cout << "El tamaÒo de la lista es: " << listaPersonas.getTam() << " personas.\n";
+                    cout << "El tama√±o de la lista es: " << listaPersonas.getTam() << " personas.\n";
                     break;
                 }
 
@@ -340,7 +340,7 @@ int main() {
                     break;
 
                 default:
-                    cout << "OpciÛn inv·lida.\n";
+                    cout << "Opci√≥n inv√°lida.\n";
             }
         } catch (out_of_range& e) {
             cout << "Error: " << e.what() << endl;
