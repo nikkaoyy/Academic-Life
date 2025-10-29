@@ -1,0 +1,21 @@
+nombre,apellido,direccion,telefono,codigo
+Juan Carlos,Pérez García,Calle 40 #15-20,3201234567,20211020001
+María Fernanda,López Rodríguez,Carrera 7 #25-30,3109876543,20211020002
+Carlos Alberto,Martínez Silva,Avenida 68 #45-10,3158765432,20201020003
+Ana María,González Torres,Transversal 15 #30-25,3187654321,20221020004
+Diego Andrés,Ramírez Castro,Diagonal 50 #20-15,3176543210,20211020005
+Laura Sofía,Jiménez Morales,Calle 72 #10-40,3165432109,20201020006
+Miguel Ángel,Herrera Díaz,Carrera 30 #55-20,3154321098,20221020007
+Valentina,Gómez Ruiz,Avenida 19 #80-15,3143210987,20211020008
+Sebastián,Torres Vega,Calle 100 #15-35,3132109876,20201020009
+Camila Andrea,Castro Blanco,Transversal 25 #40-10,3121098765,20221020010cedula,nombre,codigo,carrera,edad
+1001234567,Juan Carlos Pérez García,20211020001,Ingeniería de Sistemas,22
+1002345678,María Fernanda López Rodríguez,20211020002,Ingeniería Electrónica,21
+1003456789,Carlos Alberto Martínez Silva,20201020003,Ingeniería Industrial,23
+1004567890,Ana María González Torres,20221020004,Ingeniería Ambiental,20
+1005678901,Diego Andrés Ramírez Castro,20211020005,Ingeniería de Sistemas,22
+1006789012,Laura Sofía Jiménez Morales,20201020006,Ingeniería Civil,24
+1007890123,Miguel Ángel Herrera Díaz,20221020007,Ingeniería Mecánica,19
+1008901234,Valentina Gómez Ruiz,20211020008,Ingeniería de Sistemas,21
+1009012345,Sebastián Torres Vega,20201020009,Ingeniería Eléctrica,23
+1010123456,Camila Andrea Castro Blanco,20221020010,Ingeniería de Alimentos,20
