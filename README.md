@@ -1,4 +1,4 @@
-# 👨‍💻 UD_works  
+# 👨‍💻 Academic Life
 
 ## About Me  
 Hello! My name is **Nicolás Martínez Pineda**, and I am currently pursuing a degree in **Systems Engineering** at the *Universidad Distrital Francisco José de Caldas (Bogotá, Colombia)*.  
@@ -27,7 +27,8 @@ Here you will find:
 I am in my **fourth semester of Systems Engineering**, currently strengthening my knowledge in:  
 - **Object-Oriented Programming (Java & Python)**
 - **Advanced Programming**
-- **Systems Analysis & Design**  
+- **Systems Analysis & Design**
+- - **Computer Science**  
 - **Statistics and Data Modeling**  
 - **Linear Algebra & Applied Mathematics**  
 
