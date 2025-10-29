@@ -28,7 +28,7 @@ I am in my **fourth semester of Systems Engineering**, currently strengthening m
 - **Object-Oriented Programming (Java & Python)**
 - **Advanced Programming**
 - **Systems Analysis & Design**
-- - **Computer Science**  
+- **Computer Science**  
 - **Statistics and Data Modeling**  
 - **Linear Algebra & Applied Mathematics**  
 
