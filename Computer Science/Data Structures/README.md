@@ -28,7 +28,7 @@ Contains the template class `(Structure name)<T>` and the structure `Nodo<T>`:
 
 ### `main.cpp`
 Main program that:
-1. Creates the data structure (lists, stacks, trees, etc)  
+1. Creates the data structure (lists, stacks, trees, etc.)  
 2. Insert elements in various positions  
 3. Performs search, deletion, modification, and full list printing  
 
@@ -37,11 +37,11 @@ Main program that:
 ## 💻 How to Run
 
 ### Using **Dev-C++**
-1. Open the project `BookshopList.dev` or create a new one.  
-2. Include both `lista.h` and `main.cpp`.  
+1. Open the project `BookshopStructure.dev` or create a new one.  
+2. Include both `structure.h` and `main.cpp`.  
 3. Compile and run the program.
 
 ### Using **bash** or terminal:
 ```bash
-g++ main.cpp -o lists
-./lists
+g++ main.cpp -o structure
+./structure
