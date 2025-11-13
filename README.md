@@ -14,7 +14,7 @@ My main interests include:
 ---
 
 ## 🎯 Purpose of this Repository  
-This repository, **UD_works**, is a **centralized archive** of my academic and personal projects completed during my Systems Engineering career. It reflects both my technical growth and my approach to applying **engineering principles** in solving real-world problems.  
+This repository, **Academic-Life**, is a **centralized archive** of my academic and personal projects completed during my Systems Engineering career. It reflects both my technical growth and my approach to applying **engineering principles** in solving real-world problems.  
 
 Here you will find:  
 - 📂 **Course Projects:** Implementations, reports, and analyses from different subjects  
