@@ -25,7 +25,6 @@ Here you will find:
 
 ## 🌱 Current Focus  
 I am in my **fourth semester of Systems Engineering**, currently strengthening my knowledge in:  
-- **Object-Oriented Programming (Java & Python)**
 - **Advanced Programming**
 - **Systems Analysis & Design**
 - **Computer Science**  
