@@ -44,11 +44,9 @@ class CircuitBreaker:
     
     def call(self, func, *args, **kwargs):
         """Execute function with circuit breaker protection"""
+        # Check if circuit is OPEN
         if self.state == CircuitState.OPEN:
-            if self._should_attempt_reset():
-                self.state = CircuitState.HALF_OPEN
-            else:
-                raise Exception("Circuit breaker is OPEN - rejecting request")
+            raise Exception("Circuit breaker is OPEN - rejecting request")
         
         try:
             result = func(*args, **kwargs)
@@ -72,7 +70,7 @@ class CircuitBreaker:
     
     def _should_attempt_reset(self) -> bool:
         """Check if timeout expired"""
-        return True  # Simplified for demo
+        return False
 
 
 class ForestDataValidator:
@@ -81,7 +79,7 @@ class ForestDataValidator:
     Implements ISO 9000 quality gates
     """
     
-    EXPECTED_FEATURES = 54  # Updated: 54 features (without Cover_Type)
+    EXPECTED_FEATURES = 54  # 54 features (without Cover_Type)
     ELEVATION_RANGE = (1859, 3858)
     SLOPE_RANGE = (0, 90)
     ASPECT_RANGE = (0, 360)
@@ -181,11 +179,25 @@ class ForestDataValidator:
         try:
             return self.circuit_breaker.call(self.validate_schema, df)
         except Exception as e:
-            logger.error(f"Validation failed with circuit breaker: {e}")
+            error_msg = str(e)
+            
+            # FIXED: Check if circuit breaker is open
+            if "Circuit breaker is OPEN" in error_msg:
+                # Circuit breaker is protecting the system - don't reset state
+                logger.error(f"Validation blocked by circuit breaker: {e}")
+                return ValidationResult(
+                    is_valid=False,
+                    errors=[error_msg],
+                    warnings=["Circuit breaker is OPEN - system protected from cascading failures"],
+                    metrics={}
+                )
+            
+            # For validation errors (not circuit breaker), just log
+            logger.error(f"Validation failed: {e}")
             return ValidationResult(
                 is_valid=False,
-                errors=[str(e)],
-                warnings=["Circuit breaker triggered"],
+                errors=[error_msg],
+                warnings=["Validation error occurred"],
                 metrics={}
             )
 
@@ -197,13 +209,13 @@ if __name__ == "__main__":
     1. Download dataset from Kaggle: 
        https://www.kaggle.com/competitions/forest-cover-type-prediction/data
     2. Place 'train.csv' in the same directory as this script
-    3. Run: python data_validation.py
+    3. Run: python dataValidation.py
     """
     
     # ============================================================
     # STEP 1: Load Real Dataset
     # ============================================================
-    dataset_path = 'train.csv'  # ← Change this if your file is elsewhere
+    dataset_path = 'train.csv'
     
     if not os.path.exists(dataset_path):
         print("❌ ERROR: Dataset not found!")
@@ -331,7 +343,9 @@ if __name__ == "__main__":
     print("Attempt 4 (circuit should be OPEN):")
     try:
         result = validator.validate_with_circuit_breaker(invalid_data_list[0])
-        print("  Result:", result)
+        print(f"  Result: {result}")
+        print(f"  Errors: {result.errors}")
+        print(f"  Warnings: {result.warnings}")
     except Exception as e:
         print(f"  ❌ Request rejected: {e}")
     
