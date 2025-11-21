@@ -1,269 +1,187 @@
 """
-Preprocessing Utilities
-Helper functions for loading and using preprocessor artifacts
+Generate Preprocessor Pipeline
+Creates and saves preprocessor.pkl artifact with complete feature engineering
 """
 
 import pickle
 import pandas as pd
 import numpy as np
-from typing import Dict, Any
+from pathlib import Path
 import logging
+import sys
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent))
+
+from data.featureEngineer import FeatureEngineeringPipeline
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class PreprocessorLoader:
-    """
-    Utility class for loading and using preprocessor artifacts
-    """
+def main():
+    """Generate and save preprocessing pipeline"""
     
-    def __init__(self, preprocessor_path: str = 'data/artifacts/preprocessor.pkl'):
-        """
-        Initialize preprocessor loader
-        
-        Args:
-            preprocessor_path: Path to preprocessor.pkl file
-        """
-        self.preprocessor_path = preprocessor_path
-        self.preprocessor = None
-        self.metadata = None
-        
-    def load(self) -> Dict[str, Any]:
-        """
-        Load preprocessor from disk
-        
-        Returns:
-            Dictionary containing pipeline and metadata
-        """
-        try:
-            with open(self.preprocessor_path, 'rb') as f:
-                data = pickle.load(f)
-            
-            self.preprocessor = data['pipeline']
-            self.metadata = data.get('metadata', {})
-            
-            logger.info(f"✓ Preprocessor loaded from: {self.preprocessor_path}")
-            logger.info(f"  Features: {data['n_features_in']} → {data['n_features_out']}")
-            
-            return data
-            
-        except FileNotFoundError:
-            logger.error(f"❌ Preprocessor not found at: {self.preprocessor_path}")
-            logger.error("   Run 'python generate_preprocessor.py' to create it")
-            raise
-        except Exception as e:
-            logger.error(f"❌ Error loading preprocessor: {e}")
-            raise
+    print("=" * 70)
+    print("PREPROCESSING PIPELINE GENERATOR")
+    print("=" * 70)
     
-    def transform(self, X: pd.DataFrame) -> pd.DataFrame:
-        """
-        Transform input data using loaded preprocessor
-        
-        Args:
-            X: Input DataFrame with raw features
-            
-        Returns:
-            Transformed DataFrame
-        """
-        if self.preprocessor is None:
-            raise ValueError("Preprocessor not loaded. Call load() first.")
-        
-        if not self.preprocessor.is_fitted:
-            raise ValueError("Preprocessor is not fitted. Generate a new artifact.")
-        
-        # Apply transformation
-        X_transformed = self.preprocessor.elevation_processor.transform(X)
-        X_transformed = self.preprocessor.aspect_transformer.transform(X_transformed)
-        X_transformed = self.preprocessor.soil_consolidator.transform(X_transformed)
-        
-        # Apply normalization if scaler exists
-        if self.preprocessor.scaler is not None:
-            # Get all numerical columns (including Id if present)
-            numerical_cols = X_transformed.select_dtypes(include=[np.number]).columns.tolist()
-            
-            if len(numerical_cols) > 0:
-                # Convert to numpy to avoid sklearn's feature name validation
-                numerical_data = X_transformed[numerical_cols].values
-                
-                # Suppress sklearn's feature name warning
-                import warnings
-                with warnings.catch_warnings():
-                    warnings.filterwarnings('ignore', 
-                                          message='X does not have valid feature names')
-                    scaled_data = self.preprocessor.scaler.transform(numerical_data)
-                
-                # Assign back to DataFrame
-                X_transformed[numerical_cols] = scaled_data
-        
-        return X_transformed
+    # Paths
+    project_root = Path(__file__).parent.parent
+    data_dir = project_root / "src" / "data"
+    raw_dir = data_dir / "raw"
+    artifacts_dir = data_dir / "artifacts"
+    artifacts_dir.mkdir(parents=True, exist_ok=True)
     
-    def validate_input(self, X: pd.DataFrame, ignore_id: bool = True) -> pd.DataFrame:
-        """
-        Validate that input data has correct schema
-        
-        Args:
-            X: Input DataFrame
-            ignore_id: If True, 'Id' column is optional (for inference)
-            
-        Returns:
-            DataFrame with validated and reordered columns
-        """
-        if self.preprocessor is None:
-            raise ValueError("Preprocessor not loaded. Call load() first.")
-        
-        # Get expected features from loaded metadata
-        with open(self.preprocessor_path, 'rb') as f:
-            data = pickle.load(f)
-        
-        expected_features = data['feature_names_in']
-        actual_features = X.columns.tolist()
-        
-        # Filter out 'Id' if requested (common for inference)
-        if ignore_id and 'Id' in expected_features:
-            expected_features = [f for f in expected_features if f != 'Id']
-        
-        # Check if all expected features are present
-        missing = set(expected_features) - set(actual_features)
-        extra = set(actual_features) - set(expected_features)
-        
-        if missing:
-            raise ValueError(f"Missing required features: {sorted(missing)}")
-        
-        if extra:
-            logger.warning(f"Extra features will be ignored: {sorted(extra)}")
-        
-        # Reorder columns to match expected order
-        X_validated = X[expected_features].copy()
-        
-        logger.info("✓ Input validation passed")
-        return X_validated
+    # Load training data
+    train_file = raw_dir / "train.csv"
     
-    def get_feature_names(self) -> Dict[str, list]:
-        """
-        Get input and output feature names
-        
-        Returns:
-            Dictionary with 'input' and 'output' feature lists
-        """
-        if self.preprocessor is None:
-            self.load()
-        
-        with open(self.preprocessor_path, 'rb') as f:
-            data = pickle.load(f)
-        
-        return {
-            'input': data['feature_names_in'],
-            'output': data['feature_names_out']
+    if not train_file.exists():
+        logger.error(f" Training data not found: {train_file}")
+        logger.info(f"   Current directory: {Path.cwd()}")
+        logger.info(f"   Looking for: {train_file.absolute()}")
+        logger.info("   Please ensure train.csv is in: src/data/raw/")
+        return
+    
+    logger.info(f"\n Loading data from: {train_file}")
+    df = pd.read_csv(train_file)
+    logger.info(f"✓ Loaded {len(df)} samples")
+    
+    # Separate features and target
+    feature_cols = [col for col in df.columns if col not in ['Id', 'Cover_Type']]
+    X_full = df[feature_cols].copy()
+    
+    logger.info(f"✓ Features: {X_full.shape[1]} columns")
+    
+    # Use subset for fitting (faster, but fit on full dataset is better)
+    use_full_data = True  # Set to False for faster testing
+    
+    if use_full_data:
+        X_sample = X_full
+        logger.info("  Using FULL dataset for fitting")
+    else:
+        X_sample = X_full.head(5000).copy()
+        logger.info(f"  Using sample: {X_sample.shape} for fitting")
+    
+    # Initialize pipeline with normalization
+    logger.info("\n Initializing feature engineering pipeline...")
+    pipeline = FeatureEngineeringPipeline(normalize=True)
+    
+    # Fit and transform
+    logger.info("\n Fitting pipeline on training data...")
+    X_transformed = pipeline.fit_transform(X_sample)
+    
+    logger.info(f"\n✓ Pipeline fitted successfully!")
+    logger.info(f"  Input features: {X_sample.shape[1]}")
+    logger.info(f"  Output features: {X_transformed.shape[1]}")
+    logger.info(f"  Net change: {X_transformed.shape[1] - X_sample.shape[1]:+d} features")
+    
+    # Get chaos statistics
+    chaos_stats = pipeline.get_chaos_statistics(X_transformed)
+    logger.info(f"\n Chaos Zone Statistics:")
+    logger.info(f"  Total observations: {chaos_stats['total_observations']}")
+    logger.info(f"  In chaos zones: {chaos_stats['chaos_zone_count']} ({chaos_stats['chaos_zone_percentage']:.2f}%)")
+    
+    # Prepare serialization data
+    logger.info("\n Preparing serialization...")
+    
+    # Store complete feature information
+    preprocessor_data = {
+        'pipeline': pipeline,
+        'n_features_in': X_sample.shape[1],
+        'n_features_out': X_transformed.shape[1],
+        'feature_names_in': X_sample.columns.tolist(),
+        'feature_names_out': X_transformed.columns.tolist(),
+        'is_fitted': True,
+        'metadata': {
+            'elevation_thresholds': pipeline.elevation_processor.THRESHOLDS,
+            'proximity_window': pipeline.elevation_processor.PROXIMITY_WINDOW,
+            'uncertainty_amplification': pipeline.elevation_processor.UNCERTAINTY_AMPLIFICATION,
+            'normalization_applied': pipeline.normalize,
+            'timestamp': pd.Timestamp.now().isoformat(),
+            'training_samples': len(X_sample),
+            'chaos_statistics': chaos_stats
         }
+    }
     
-    def get_chaos_metadata(self) -> Dict:
-        """
-        Get chaos detection metadata
-        
-        Returns:
-            Dictionary with threshold information
-        """
-        if self.metadata is None:
-            self.load()
-        
-        return self.metadata
-
-
-def preprocess_for_inference(X: pd.DataFrame, 
-                            preprocessor_path: str = 'data/artifacts/preprocessor.pkl',
-                            ignore_id: bool = True) -> pd.DataFrame:
-    """
-    Convenience function to preprocess data for inference
+    # Add scaler information if present
+    if pipeline.scaler is not None:
+        preprocessor_data['scaler_n_features'] = pipeline.scaler.n_features_in_
+        preprocessor_data['scaler_feature_names'] = pipeline.scaler.feature_names_in_.tolist() if hasattr(pipeline.scaler, 'feature_names_in_') else None
     
-    Args:
-        X: Raw input DataFrame
-        preprocessor_path: Path to preprocessor artifact
-        ignore_id: If True, 'Id' column is optional
-        
-    Returns:
-        Transformed DataFrame ready for model inference
-    """
-    loader = PreprocessorLoader(preprocessor_path)
-    loader.load()
-    X_validated = loader.validate_input(X, ignore_id=ignore_id)
-    X_transformed = loader.transform(X_validated)
+    # Save to disk
+    output_path = artifacts_dir / "preprocessor.pkl"
     
-    return X_transformed
+    with open(output_path, 'wb') as f:
+        pickle.dump(preprocessor_data, f)
+    
+    logger.info(f"\n Preprocessor saved to: {output_path}")
+    logger.info(f"   File size: {output_path.stat().st_size / 1024:.2f} KB")
+    
+    # Verification: Load and test
+    logger.info("\n Verification: Loading and testing...")
+    
+    with open(output_path, 'rb') as f:
+        loaded_data = pickle.load(f)
+    
+    loaded_pipeline = loaded_data['pipeline']
+    
+    # Test transform on a small sample
+    test_sample = X_sample.head(10).copy()
+    test_transformed = loaded_pipeline.elevation_processor.transform(test_sample)
+    test_transformed = loaded_pipeline.aspect_transformer.transform(test_transformed)
+    test_transformed = loaded_pipeline.soil_consolidator.transform(test_transformed)
+    
+    if loaded_pipeline.scaler is not None:
+        numerical_cols = test_transformed.select_dtypes(include=[np.number]).columns.tolist()
+        numerical_data = test_transformed[numerical_cols].values
+        
+        import warnings
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore')
+            scaled_data = loaded_pipeline.scaler.transform(numerical_data)
+            test_transformed[numerical_cols] = scaled_data
+    
+    logger.info(f"✓ Transform test passed: {test_sample.shape} → {test_transformed.shape}")
+    
+    # Summary
+    print("\n" + "=" * 70)
+    print("PREPROCESSING PIPELINE SUMMARY")
+    print("=" * 70)
+    print(f"\n Input:")
+    print(f"   Features: {preprocessor_data['n_features_in']}")
+    print(f"   Sample columns: {preprocessor_data['feature_names_in'][:5]}...")
+    
+    print(f"\n Output:")
+    print(f"   Features: {preprocessor_data['n_features_out']}")
+    print(f"   Sample columns: {preprocessor_data['feature_names_out'][:5]}...")
+    
+    print(f"\n Transformations Applied:")
+    print(f"   ✓ Elevation binning + threshold detection")
+    print(f"   ✓ Aspect sin/cos encoding")
+    print(f"   ✓ Soil type consolidation")
+    print(f"   ✓ Numerical scaling: {'YES' if pipeline.normalize else 'NO'}")
+    
+    print(f"\n  Chaos Detection:")
+    print(f"   Thresholds: {preprocessor_data['metadata']['elevation_thresholds']} m")
+    print(f"   Window: ±{preprocessor_data['metadata']['proximity_window']} m")
+    print(f"   Amplification: {preprocessor_data['metadata']['uncertainty_amplification']}×")
+    
+    print(f"\n Artifact:")
+    print(f"   Path: {output_path}")
+    print(f"   Size: {output_path.stat().st_size / 1024:.2f} KB")
+    print(f"   Fitted: {preprocessor_data['is_fitted']}")
+    
+    print("\n" + "=" * 70)
+    print(" PREPROCESSING PIPELINE READY!")
+    print("=" * 70)
+    print("\nNext steps:")
+    print("  1. Run: python src/generate_ensemble_models.py")
+    print("  2. Or use in your code:")
+    print("     from preprocessing import PreprocessorLoader")
+    print("     loader = PreprocessorLoader('src/data/artifacts/preprocessor.pkl')")
+    print("     X_transformed = loader.transform(X_raw)")
+    
 
-
-# Example usage
 if __name__ == "__main__":
-    print("=" * 70)
-    print("PREPROCESSOR LOADER DEMO")
-    print("=" * 70)
-    
-    # Check if preprocessor exists
-    import os
-    preprocessor_path = 'data/artifacts/preprocessor.pkl'
-    
-    if not os.path.exists(preprocessor_path):
-        print(f"❌ Preprocessor not found at: {preprocessor_path}")
-        print("   Run: python generate_preprocessor.py")
-        exit(1)
-    
-    # Load preprocessor
-    loader = PreprocessorLoader(preprocessor_path)
-    data = loader.load()
-    
-    print("\n" + "=" * 70)
-    print("PREPROCESSOR INFO")
-    print("=" * 70)
-    print(f"Input features: {data['n_features_in']}")
-    print(f"Output features: {data['n_features_out']}")
-    print(f"Is fitted: {data['is_fitted']}")
-    
-    # Get feature names
-    features = loader.get_feature_names()
-    print(f"\nFirst 5 input features: {features['input'][:5]}")
-    print(f"First 5 output features: {features['output'][:5]}")
-    
-    # Get chaos metadata
-    chaos_meta = loader.get_chaos_metadata()
-    print(f"\nChaos detection settings:")
-    print(f"  Thresholds: {chaos_meta['elevation_thresholds']}")
-    print(f"  Proximity window: ±{chaos_meta['proximity_window']}m")
-    print(f"  Amplification factor: {chaos_meta['uncertainty_amplification']}x")
-    
-    # Test transformation with sample data
-    print("\n" + "=" * 70)
-    print("TESTING TRANSFORMATION")
-    print("=" * 70)
-    
-    # Create sample data
-    np.random.seed(42)
-    sample_data = pd.DataFrame({
-        'Id': [1, 2, 3],  # Add Id column
-        'Elevation': [2500, 2750, 3100],
-        'Aspect': [90, 180, 270],
-        'Slope': [15, 20, 25],
-        'Horizontal_Distance_To_Hydrology': [100, 200, 300],
-        'Vertical_Distance_To_Hydrology': [-50, 0, 50],
-        'Horizontal_Distance_To_Roadways': [500, 1000, 1500],
-        'Horizontal_Distance_To_Fire_Points': [600, 1200, 1800],
-        'Hillshade_9am': [100, 150, 200],
-        'Hillshade_Noon': [200, 220, 240],
-        'Hillshade_3pm': [100, 120, 140],
-        **{f'Wilderness_Area{i}': [1, 0, 0] for i in range(1, 5)},
-        **{f'Soil_Type{i}': [0, 1, 0] for i in range(1, 41)}
-    })
-    
-    print(f"Sample input shape: {sample_data.shape}")
-    print(f"Sample has Id column: {'Id' in sample_data.columns}")
-    
-    # Validate and transform (ignore 'Id' for validation - it will be included in transform)
-    sample_data = loader.validate_input(sample_data, ignore_id=False)
-    transformed = loader.transform(sample_data)
-    
-    print(f"Transformed shape: {transformed.shape}")
-    print(f"\nNew features created:")
-    new_features = set(transformed.columns) - set(sample_data.columns)
-    for feat in sorted(list(new_features)[:10]):  # Show first 10
-        print(f"  - {feat}")
-    
-    print("\n Demo complete!")
+    main()
