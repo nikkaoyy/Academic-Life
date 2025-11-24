@@ -165,7 +165,7 @@ Algoritmos de inserción y eliminación según el pseudocódigo oficial de Corme
 
 👤 Autores
 
-- Nicolás Martínez Pineda [](https://github.com/nikkaoyy)
+- Nicolás Martínez Pineda ([Perfil en GitHub](https://github.com/nikkaoyy))
 - Ian Nicolás Sandoval Martínez
 
 ⭐ Si este proyecto te fue útil, considera darle una estrella en GitHub.
