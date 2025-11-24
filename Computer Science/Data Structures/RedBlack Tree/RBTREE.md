@@ -68,10 +68,9 @@ Ejecutar
 ./arbol_rn
 ```
 
-#include "ArbolRojiNegro.h"
-
 📖 Ejemplo de Uso
 ```cpp
+#include "ArbolRojiNegro.h"
 int main() {
     ArbolRojiNegro arbol;
     
@@ -91,3 +90,82 @@ int main() {
     return 0;
 }
 ```
+
+🎯 Demostración del Programa
+
+El archivo main.cpp incluye:
+
+- Inserción de 13 nodos que activan los tres casos de ajuste
+- Recorridos iniciales (inorden y preorden)
+- Búsqueda interactiva
+- Eliminación de nodos cubriendo todos los casos
+- Recorridos finales
+- Modificación de información
+
+Salida Ejemplo
+```
+===============================================
+    PROGRAMA DE ARBOL ROJO-NEGRO
+===============================================
+
+1. INSERCION DE CLAVES (3 casos de ajuste)
+-------------------------------------------
+Insertado: 10 (Raiz inicial)
+Insertado: 5 (Hijo izquierdo)
+Insertado: 15 (Hijo derecho)
+...
+
+2. PRIMEROS DOS RECORRIDOS
+-------------------------------------------
+INORDEN  : 1 3 5 6 7 8 10 11 12 13 15 18 20
+PREORDEN : 7 5 3 1 6 12 10 8 11 15 13 18 20
+
+3. BUSQUEDA DE CLAVE
+-------------------------------------------
+Ingrese una clave a buscar: 10
+[ENCONTRADO] Clave 10
+Informacion: Raiz inicial
+...
+```
+
+🔍 Conceptos Clave
+Nodo NIL (Centinela)
+
+Se utiliza un nodo centinela en lugar de NULL:
+- Siempre es negro
+- Representa las hojas externas
+- Simplifica el código evitando verificaciones
+
+Rotaciones
+
+Herramienta de rebalanceo manteniendo el orden BST.
+
+Rotación Izquierda
+```
+    [x]              [y]
+   /   \            /   \
+  A    [y]   →    [x]    C
+      /   \       / \
+     B     C     A   B
+
+```
+Rotación Derecha
+```
+      [y]          [x]
+     /   \        /   \
+   [x]    C  →   A    [y]
+   / \                / \
+  A   B              B   C
+```
+
+📚 Referencias
+
+Cormen, T. H., et al. Introduction to Algorithms (3rd ed.). MIT Press.
+Algoritmos de inserción y eliminación según el pseudocódigo oficial de Cormen.
+
+👤 Autores
+
+Nicolás Martínez Pineda github.com/nikkaoyy
+Ian Nicolás Sandoval Martínez
+
+⭐ Si este proyecto te fue útil, considera darle una estrella en GitHub.
