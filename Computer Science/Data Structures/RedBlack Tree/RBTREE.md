@@ -20,7 +20,7 @@ Los árboles Rojo-Negro son estructuras auto-balanceadas que garantizan operacio
 ---
 
 ## 🔧 Estructura del Proyecto
-.
+
 ├── Files
     ├── ArbolRojiNegro.h
     └── main.cpp
@@ -36,3 +36,12 @@ struct nodo {
     nodo *izq, *der, *padre;
     bool color; // true = ROJO, false = NEGRO
 };
+```
+
+✨ Funcionalidades
+Operaciones Principales: 
+- insertar(int clave, string info): Inserta un nodo y rebalancea el árbol
+-     Casos:
+-         Tío rojo (recoloreo)
+-         Rotación doble
+-         Rotación simple
