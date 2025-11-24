@@ -1,14 +1,14 @@
 /*
 
-Universidad Distrital Francisco José de Caldas
+Universidad Distrital Francisco JosÃ© de Caldas
 
-Librería en base al algoritmo de Árboles RojiNegros del libro
-Introducción a los Algoritmos de Thomas H. Cormen 
+LibrerÃ­a en base al algoritmo de Ãrboles RojiNegros del libro
+IntroducciÃ³n a los Algoritmos de Thomas H. Cormen 
 
 Realizado por: 
 
-Nicolás Martínez Pineda (20241020098)
-Ian Nicolás Sandoval Martínez (20241020078)
+NicolÃ¡s MartÃ­nez Pineda (20241020098)
+Ian NicolÃ¡s Sandoval MartÃ­nez (20241020078)
 
 */
 
@@ -23,7 +23,7 @@ using namespace std;
 #define ROJO true
 #define NEGRO false
 
-// Estructura del nodo según especificación
+// Estructura del nodo segÃºn especificaciÃ³n
 struct nodo {
     int clave;
     string Info;
@@ -31,17 +31,17 @@ struct nodo {
     bool color; // true = ROJO, false = NEGRO
 };
 
-// Clase del Árbol RojiNegro
+// Clase del Ãrbol RojiNegro
 class ArbolRojiNegro {
 private:
     nodo* raiz;
     nodo* NIL; // centinela
     
-    // Métodos
+    // MÃ©todos
     
     // Buscar nodo
     nodo* buscarNodo(int clave) {
-        nodo* actual = raiz; // aux en raíz
+        nodo* actual = raiz; // aux en raÃ­z
         while (actual != NIL && actual->clave != clave) { // apunta a la clave hasta encontrarla por izq o der
             if (clave < actual->clave)
                 actual = actual->izq;
@@ -58,7 +58,7 @@ private:
         return n;
     }
     
-    // Algoritmos de Rotación izq - der
+    // Algoritmos de RotaciÃ³n izq - der
     
     void rotarIzquierda(nodo* x) { 
         nodo* y = x->der; // y como la der. de x
@@ -66,7 +66,7 @@ private:
         if (y->izq != NIL) 
             y->izq->padre = x; // actualizamos el padre de y a x
         y->padre = x->padre; // transplante x, y
-        if (x->padre == NIL) // si x era raíz ahora y es raíz
+        if (x->padre == NIL) // si x era raÃ­z ahora y es raÃ­z
             raiz = y;
         else if (x == x->padre->izq) // si x era hijo izquierdo y lo reemplaza
             x->padre->izq = y;
@@ -76,7 +76,7 @@ private:
         x->padre = y; // y padre de x
     }
     
-    void rotarDerecha(nodo* x) { // Función espejo de rotarIzquierda
+    void rotarDerecha(nodo* x) { // FunciÃ³n espejo de rotarIzquierda
         nodo* y = x->izq;
         x->izq = y->der;
         if (y->der != NIL)
@@ -132,7 +132,7 @@ private:
         raiz->color = NEGRO;
     }
     
-    // Función aux del transplante de u,v para el balanceo del Árbol RojiNegro
+    // FunciÃ³n aux del transplante de u,v para el balanceo del Ãrbol RojiNegro
     void transplantar(nodo* u, nodo* v) {
         if (u->padre == NIL)
             raiz = v;
@@ -143,7 +143,7 @@ private:
         v->padre = u->padre;
     }
     
-    // Eliminación de nodo x por medio de los 4 casos de Thomas H. Cormen
+    // EliminaciÃ³n de nodo x por medio de los 4 casos de Thomas H. Cormen
     void ajustarEliminacion(nodo* x) {
         while (x != raiz && x->color == NEGRO) {
             if (x == x->padre->izq) {
@@ -199,7 +199,7 @@ private:
         x->color = NEGRO;
     }
     
-    // Eliminar el árbol
+    // Eliminar el Ã¡rbol
     void destruirArbol(nodo* n) {
         if (n != NIL) {
             destruirArbol(n->izq);
@@ -223,7 +223,7 @@ public:
         delete NIL;
     }
     
-    // Inserción llamando a ajustarInserción(z) (z: el nuevo nodo)
+    // InserciÃ³n llamando a ajustarInserciÃ³n(z) (z: el nuevo nodo)
     void insertar(int clave, string info) {
         nodo* z = new nodo;
         z->clave = clave;
@@ -255,7 +255,7 @@ public:
         ajustarInsercion(z);
     }
     
-    // Eliminación a través de la clave
+    // EliminaciÃ³n a travÃ©s de la clave
     bool eliminar(int clave) {
         nodo* z = buscarNodo(clave);
         if (z == NIL)
@@ -315,7 +315,7 @@ public:
         return false;
     }
     
-    // Impresión del Inorden
+    // ImpresiÃ³n del Inorden
     queue<int> inorden() {
         queue<int> resultado;
         if (raiz == NIL) return resultado;
@@ -336,7 +336,7 @@ public:
         return resultado;
     }
     
-    // Impresión del Preorden
+    // ImpresiÃ³n del Preorden
     queue<int> preorden() {
         queue<int> resultado;
         if (raiz == NIL) return resultado;
@@ -357,7 +357,7 @@ public:
         return resultado;
     }
     
-    // Impresión del Posorden
+    // ImpresiÃ³n del Posorden
     queue<int> posorden() {
         queue<int> resultado;
         if (raiz == NIL) return resultado;
@@ -383,7 +383,7 @@ public:
         return resultado;
     }
     
-    // Impresión de nodos por niveles como una cola queue<int>
+    // ImpresiÃ³n de nodos por niveles como una cola queue<int>
     queue<int> porNiveles() {
         queue<int> resultado;
         if (raiz == NIL) return resultado;
