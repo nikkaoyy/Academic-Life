@@ -21,12 +21,12 @@ int main() {
     cout << "===============================================\n" << endl;
     
     // ========================================
-    // FASE 1: Inserci髇 mostrando los 3 casos
+    // FASE 1: Inserci贸n mostrando los 3 casos
     // ========================================
     cout << "1. INSERCION DE CLAVES (3 casos de ajuste)" << endl;
     cout << "-------------------------------------------" << endl;
     
-    // Caso 1: T韔 rojo - recoloreo
+    // Caso 1: T铆o rojo - recoloreo
     arbol.insertar(10, "Raiz inicial");
     cout << "Insertado: 10 (Raiz inicial)" << endl;
     
@@ -42,7 +42,7 @@ int main() {
     arbol.insertar(7, "Fuerza recoloreo");
     cout << "Insertado: 7 (Fuerza recoloreo)" << endl;
     
-    // Caso 2: Nodo en posici髇 media - rotaci髇 doble
+    // Caso 2: Nodo en posici贸n media - rotaci贸n doble
     arbol.insertar(6, "CASO 2: Rotacion doble");
     cout << "Insertado: 6 --> CASO 2: Nodo medio, rotacion doble" << endl;
     
@@ -52,7 +52,7 @@ int main() {
     arbol.insertar(18, "Hijo der de 15");
     cout << "Insertado: 18 (Hijo derecho de 15)" << endl;
     
-    // Caso 3: Nodo externo - rotaci髇 simple
+    // Caso 3: Nodo externo - rotaci贸n simple
     arbol.insertar(1, "CASO 3: Rotacion simple");
     cout << "Insertado: 1 --> CASO 3: Nodo externo, rotacion simple" << endl;
     
@@ -89,7 +89,7 @@ int main() {
     cout << "Ingrese una clave a buscar: "; // Pedimos la clave
     cin >> claveBuscar;
     
-    string info = arbol.buscar(claveBuscar); // Llamamos el m閠odo buscar(clave)
+    string info = arbol.buscar(claveBuscar); // Llamamos el m茅todo buscar(clave)
     if (!info.empty()) {
         cout << "\n[ENCONTRADO] Clave " << claveBuscar << endl;
         cout << "Informacion: " << info << endl;
@@ -98,13 +98,13 @@ int main() {
              << " no existe en el arbol." << endl;
     }
     
-    // B鷖quedas adicionales de demostraci髇
+    // B煤squedas adicionales de demostraci贸n
     cout << "\nBusquedas adicionales:" << endl;
     cout << "Clave 10: " << arbol.buscar(10) << endl;
     cout << "Clave 15: " << arbol.buscar(15) << endl;
     
     // ========================================
-    // FASE 4: Eliminaci髇 de los 4 casos
+    // FASE 4: Eliminaci贸n de los 4 casos
     // ========================================
     cout << "\n4. ELIMINACION DE CLAVES (4 casos)" << endl;
     cout << "-------------------------------------------" << endl;
@@ -146,10 +146,10 @@ int main() {
     mostrarCola(arbol.porNiveles(), "POR NIVELES");
     
     // ========================================
-    // DEMOSTRACI覰 ADICIONAL
+    // DEMOSTRACI脫N ADICIONAL
     // ========================================
     
-    // Dando una modificaci髇 a trav閟 de b鷖quedas
+    // Dando una modificaci贸n a trav茅s de b煤squedas
     cout << "\n6. FUNCIONALIDADES ADICIONALES" << endl;
     cout << "-------------------------------------------" << endl;
     
@@ -165,7 +165,7 @@ int main() {
     cout << "===============================================" << endl;
     mostrarCola(arbol.inorden(), "INORDEN FINAL");
     
-    cout << "\nrograma ejecutado exitosamente!" << endl;
+    cout << "\n隆Programa ejecutado exitosamente!" << endl;
     cout << "===============================================\n" << endl;
     
     return 0;
