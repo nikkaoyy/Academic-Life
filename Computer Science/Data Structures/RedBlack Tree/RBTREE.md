@@ -1,25 +1,25 @@
-# Árbol Rojo-Negro en C++
+# Red-Black Tree in C++
 
-Implementación completa de un árbol binario de búsqueda balanceado **Rojo-Negro** en C++, con todas las operaciones fundamentales y recorridos iterativos.
-
----
-
-## 📋 Descripción
-
-Este proyecto implementa un **árbol Rojo-Negro (Red-Black Tree)** siguiendo los algoritmos del libro *Introduction to Algorithms* de Cormen et al.  
-Los árboles Rojo-Negro son estructuras auto-balanceadas que garantizan operaciones en **O(log n)**.
-
-### Propiedades del Árbol Rojo-Negro
-
-- Cada nodo es rojo o negro  
-- La raíz es siempre negra  
-- Todas las hojas (NIL) son negras  
-- Si un nodo es rojo, ambos hijos son negros  
-- Todos los caminos desde un nodo hasta sus hojas contienen el mismo número de nodos negros  
+Complete implementation of a **Red-Black** balanced binary search tree in C++, featuring all fundamental operations and iterative traversals.
 
 ---
 
-## 🔧 Estructura del Proyecto
+## 📋 Description
+
+This project implements a **Red-Black Tree** following the algorithms from *Introduction to Algorithms* by Cormen et al.  
+Red-Black Trees are self-balancing structures that guarantee **O(log n)** operations.
+
+### Red-Black Tree Properties
+
+- Each node is either red or black  
+- The root is always black  
+- All leaves (NIL) are black  
+- If a node is red, both children are black  
+- All paths from a node to its leaves contain the same number of black nodes  
+
+---
+
+## 🔧 Project Structure
 
     ├── Files
         ├── ArbolRojiNegro.h
@@ -27,120 +27,120 @@ Los árboles Rojo-Negro son estructuras auto-balanceadas que garantizan operacio
     └── RBTree.dev
 
 
-### Estructura del Nodo
+### Node Structure
 
 ```cpp
 struct nodo {
     int clave;
     string Info;
     nodo *izq, *der, *padre;
-    bool color; // true = ROJO, false = NEGRO
+    bool color; // true = RED, false = BLACK
 };
 ```
 
-✨ Funcionalidades
-Operaciones Principales: 
-- insertar(int clave, string info): Inserta un nodo y rebalancea el árbol con 3 casos: Tío rojo (recoloreo), Rotación doble y Rotación simple
-- eliminar(int clave): Elimina un nodo manteniendo las propiedades del árbol con 4 casos: Nodo hoja, Nodo con un hijo, Nodo con dos hijos y Ajuste por nodo negro eliminado.
-- buscar(int clave): Retorna la información asociada a una clave.
-- modificar(int clave, string nuevaInfo): Actualiza la información de un nodo existente.
+## ✨ Features
+Main Operations: 
+- insertar(int clave, string info): Inserts a node and rebalances the tree with 3 cases: Red uncle (recoloring), Double rotation, and Single rotation
+- eliminar(int clave): Deletes a node while maintaining tree properties with 4 cases: Leaf node, Node with one child, Node with two children, and Adjustment for deleted black node.
+- buscar(int clave): Returns the information associated with a key.
+- modificar(int clave, string nuevaInfo): Updates the information of an existing node.
 
-- Recorridos (Iterativos)
-inorden() – izquierda → raíz → derecha
-preorden() – raíz → izquierda → derecha
-posorden() – izquierda → derecha → raíz
-porNiveles() – recorrido por niveles (BFS)
+- Traversals (Iterative)
+inorden() – left → root → right
+preorden() – root → left → right
+posorden() – left → right → root
+porNiveles() – level-order traversal (BFS)
 
-🚀 Compilación y Ejecución
-Requisitos
+## 🚀 Compilation and Execution
+Requirements
 
-Compilador con soporte para C++11 o superior
-Compatible con MinGW, GCC, Clang o MSVC
+Compiler with C++11 support or higher
+Compatible with MinGW, GCC, Clang, or MSVC
 
-Compilar
+Compile
 ```
-# Con g++
+# With g++
 g++ -std=c++11 main.cpp -o arbol_rn
 ```
 
-Ejecutar
+Execute
 ```
 ./arbol_rn
 ```
 
-📖 Ejemplo de Uso
+## 📖 Usage Example
 ```cpp
 #include "ArbolRojiNegro.h"
 int main() {
     ArbolRojiNegro arbol;
     
-    arbol.insertar(10, "Raiz");
-    arbol.insertar(5, "Izquierda");
-    arbol.insertar(15, "Derecha");
+    arbol.insertar(10, "Root");
+    arbol.insertar(5, "Left");
+    arbol.insertar(15, "Right");
     
     string info = arbol.buscar(10);
-    cout << info << endl; // "Raiz"
+    cout << info << endl; // "Root"
 
     queue<int> inorden = arbol.inorden();
-    // Resultado esperado: 5 10 15
+    // Expected result: 5 10 15
 
-    arbol.modificar(10, "Nueva información");
+    arbol.modificar(10, "New information");
     arbol.eliminar(5);
     
     return 0;
 }
 ```
 
-🎯 Demostración del Programa
+## 🎯 Program Demonstration
 
-El archivo main.cpp incluye:
+The main.cpp file includes:
 
-- Inserción de 13 nodos que activan los tres casos de ajuste
-- Recorridos iniciales (inorden y preorden)
-- Búsqueda interactiva
-- Eliminación de nodos cubriendo todos los casos
-- Recorridos finales
-- Modificación de información
+- Insertion of 13 nodes triggering all three adjustment cases
+- Initial traversals (inorder and preorder)
+- Interactive search
+- Node deletion covering all cases
+- Final traversals
+- Information modification
 
-Salida Ejemplo
+Sample Output
 ```
 ===============================================
-    PROGRAMA DE ARBOL ROJO-NEGRO
+    RED-BLACK TREE PROGRAM
 ===============================================
 
-1. INSERCION DE CLAVES (3 casos de ajuste)
+1. KEY INSERTION (3 adjustment cases)
 -------------------------------------------
-Insertado: 10 (Raiz inicial)
-Insertado: 5 (Hijo izquierdo)
-Insertado: 15 (Hijo derecho)
+Inserted: 10 (Initial root)
+Inserted: 5 (Left child)
+Inserted: 15 (Right child)
 ...
 
-2. PRIMEROS DOS RECORRIDOS
+2. FIRST TWO TRAVERSALS
 -------------------------------------------
-INORDEN  : 1 3 5 6 7 8 10 11 12 13 15 18 20
-PREORDEN : 7 5 3 1 6 12 10 8 11 15 13 18 20
+INORDER  : 1 3 5 6 7 8 10 11 12 13 15 18 20
+PREORDER : 7 5 3 1 6 12 10 8 11 15 13 18 20
 
-3. BUSQUEDA DE CLAVE
+3. KEY SEARCH
 -------------------------------------------
-Ingrese una clave a buscar: 10
-[ENCONTRADO] Clave 10
-Informacion: Raiz inicial
+Enter a key to search: 10
+[FOUND] Key 10
+Information: Initial root
 ...
 ```
 
-🔍 Conceptos Clave
-Nodo NIL (Centinela)
+## 🔍 Key Concepts
+NIL Node (Sentinel)
 
-Se utiliza un nodo centinela en lugar de NULL:
-- Siempre es negro
-- Representa las hojas externas
-- Simplifica el código evitando verificaciones
+A sentinel node is used instead of NULL:
+- Always black
+- Represents external leaves
+- Simplifies code by avoiding checks
 
-Rotaciones
+Rotations
 
-Herramienta de rebalanceo manteniendo el orden BST.
+Rebalancing tool that maintains BST order.
 
-Rotación Izquierda
+Left Rotation
 ```
     [x]              [y]
    /   \            /   \
@@ -149,7 +149,7 @@ Rotación Izquierda
      B     C     A   B
 
 ```
-Rotación Derecha
+Right Rotation
 ```
       [y]          [x]
      /   \        /   \
@@ -158,14 +158,14 @@ Rotación Derecha
   A   B              B   C
 ```
 
-📚 Referencias
+## 📚 References
 
 Cormen, T. H., et al. Introduction to Algorithms (3rd ed.). MIT Press.
-Algoritmos de inserción y eliminación según el pseudocódigo oficial de Cormen.
+Insertion and deletion algorithms based on Cormen's official pseudocode.
 
-👤 Autores
+## 👤 Authors
 
 - Nicolás Martínez Pineda **[GitHub](https://github.com/nikkaoyy)**
 - Ian Nicolás Sandoval Martínez
 
-⭐ Si este proyecto te fue útil, considera darle una estrella en GitHub.
+⭐ If you found this project helpful, consider giving it a star on GitHub.
