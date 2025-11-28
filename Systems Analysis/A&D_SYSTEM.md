@@ -224,7 +224,7 @@ Academic-Life/
 
 | Aspect | Ensemble Approach | LightGBM Only | Winner |
 |--------|------------------|---------------|--------|
-| Accuracy | Target 95%+ | 87.55% | Ensemble (theoretical) |
+| Accuracy | Target 95%+ | 87.55% | ✅ LightGBM |
 | Training Time | ~180s (3 models) | ~35s | ✅ LightGBM |
 | Inference Speed | ~100ms | ~50ms | ✅ LightGBM |
 | Model Size | ~15MB | ~2.3MB | ✅ LightGBM |
