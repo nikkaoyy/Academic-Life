@@ -92,7 +92,7 @@ Academic-Life/
 ## 📖 Workshop Progression
 
 ### Workshop 1: Systems Analysis - Elements, Relationships, Sensitivity, and Chaos
-**Date**: October 2024  
+**Date**: October 2025  
 **Focus**: Foundational systems analysis and chaos detection
 
 **Key Deliverables**:
@@ -121,7 +121,7 @@ Academic-Life/
 ---
 
 ### Workshop 2: System Design and Architecture
-**Date**: November 2024  
+**Date**: November 2025  
 **Focus**: Translating analysis into implementable architecture
 
 **Key Deliverables**:
@@ -142,11 +142,10 @@ Academic-Life/
 
 3. ✅ **Ensemble Design → LightGBM Selection**
    - Initial ensemble design: Random Forest + XGBoost + LightGBM (weights: 0.3, 0.4, 0.3)
-   - Performance analysis showed LightGBM alone achieved 95%+ accuracy
+   - Theoretical target: 95%+ accuracy through model diversity
    - Decision to simplify: Single LightGBM model for production
    - **Rationale**: Faster inference, smaller model size, easier maintenance
    - **Trade-off**: Slightly lower robustness vs ensemble, but significant operational gains
-   - **Theoretical accuracy**: 95.2% (maintained from ensemble design)
 
 4. ✅ **Chaos Control Mechanisms**
    - Threshold proximity detector (±50m windows)
@@ -163,7 +162,7 @@ Academic-Life/
 ---
 
 ### Workshop 3: Robust System and Quality Management
-**Date**: November-December 2024  
+**Date**: November-December 2025  
 **Focus**: Production-ready architecture with quality frameworks
 
 **Key Deliverables**:
@@ -193,24 +192,17 @@ Academic-Life/
    | R8 | Security & compliance | Medium | High | RBAC, encryption, audit trails |
 
 4. ✅ **Operational KPIs**
-   - **Accuracy**: Target 95.2%, alert if drop ≥5%
-   - **Latency**: p95 <100ms, p99 <200ms
-   - **Availability**: 99.9% SLA
+   - **Accuracy**: Target 87.55% (achieved in implementation)
+   - **Latency**: Target p95 <100ms, p99 <200ms
+   - **Availability**: Target 99.9% SLA
    - **Drift**: KL-divergence threshold 0.01 (minor), 0.05 (major)
    - **Chaos Zone Frequency**: Alert if >20% predictions in threshold zones
 
 5. ✅ **Project Management - Hybrid Agile-Kanban**
    - **Team Roles**: Project Manager, Data Analyst, ML Engineer, Backend Developer, QA Manager
-   - **Milestones**: 5 phases over 5 weeks (Nov 3 - Dec 6, 2024)
+   - **Milestones**: 5 phases over 5 weeks (Nov 3 - Dec 6, 2025)
    - **Tools**: GitHub Projects, Notion, MLflow, Grafana
    - **Methodology**: Weekly stand-ups, feature branches, code reviews
-
-**Evidence of Improvement**:
-- Achieved 95%+ accuracy with single LightGBM model (vs. 95.2% ensemble target)
-- Reduced model complexity: 1 model vs. 3 models (training time ↓40%, storage ↓65%)
-- Maintained chaos zone performance with uncertainty quantification
-- Simplified deployment: Single model artifact vs. ensemble management
-- Feature engineering remains intact: 56 → 15-20 features (sparsity 73% → 5%)
 
 ---
 
@@ -221,18 +213,18 @@ Academic-Life/
 **Initial Design (Workshops 1-2)**:
 - Theoretical ensemble: Random Forest + XGBoost + LightGBM
 - Weighted voting with [0.3, 0.4, 0.3] weights
-- Target: 95.2% accuracy through model diversity
+- Target: 95%+ accuracy through model diversity
 
 **Final Implementation (Workshop 3)**:
 - Single LightGBM model
 - Simplified architecture without ensemble complexity
-- Achieved: 95%+ accuracy (maintained performance target)
+- Achieved: **87.55% accuracy**
 
 **Decision Rationale**:
 
 | Aspect | Ensemble Approach | LightGBM Only | Winner |
 |--------|------------------|---------------|--------|
-| Accuracy | 95.2% | 95%+ | ≈ Tie |
+| Accuracy | Target 95%+ | 87.55% | Ensemble (theoretical) |
 | Training Time | ~180s (3 models) | ~35s | ✅ LightGBM |
 | Inference Speed | ~100ms | ~50ms | ✅ LightGBM |
 | Model Size | ~15MB | ~2.3MB | ✅ LightGBM |
@@ -240,13 +232,13 @@ Academic-Life/
 | Memory Usage | ~3GB | ~1GB | ✅ LightGBM |
 
 **Key Insight**: 
-> "Model simplicity is a feature, not a bug. LightGBM's gradient boosting efficiently captures the feature interactions that motivated the original ensemble design, while eliminating operational overhead."
+> "Model simplicity is a feature, not a bug. While the single LightGBM model achieved 87.55% accuracy—below the theoretical 95%+ target—it offers significant operational advantages: 60% faster training, 65% smaller model size, and simplified deployment. This demonstrates the real-world trade-off between theoretical performance targets and production constraints."
 
 **Academic Learning**:
 - Ensemble design taught us to analyze complementary model strengths
-- Performance testing revealed when complexity doesn't add value
-- Production constraints (latency, memory) drive architectural decisions
-- **Systems thinking**: Optimize for total cost of ownership, not just accuracy
+- Performance testing revealed the gap between theoretical targets and practical results
+- Production constraints (latency, memory, maintainability) often outweigh marginal accuracy gains
+- **Systems thinking**: Optimize for total cost of ownership, not just accuracy metrics
 
 ### 2. Chaos Theory Integration in ML
 
@@ -276,7 +268,7 @@ U_total = √(U_aleatoric² + U_epistemic²)
 IF near_threshold: U_total *= 2.0
 ```
 
-**Impact**: Provides ecologists with actionable confidence metrics for field verification decisions. Works seamlessly with LightGBM's probability outputs.
+**Impact**: Provides ecologists with actionable confidence metrics for field verification decisions. Works seamlessly with LightGBM's probability outputs, helping contextualize the 87.55% accuracy by identifying high-uncertainty predictions.
 
 ---
 
@@ -298,8 +290,8 @@ IF near_threshold: U_total *= 2.0
 
 **Fault Tolerance**:
 - Circuit breaker pattern in validation layer
-- Automated F1-score comparison prevents model regression
-- Graceful degradation in ensemble inference (reweight if model fails)
+- Automated performance comparison prevents model regression
+- Graceful degradation strategies for production failures
 
 ---
 
@@ -321,7 +313,7 @@ SOIL_GROUPS = {
 }
 ```
 
-**Impact**: 40% faster training, improved generalization, maintained ecological interpretability. LightGBM efficiently handles the consolidated feature space.
+**Impact**: Faster training, improved feature space quality, maintained ecological interpretability. LightGBM efficiently handles the consolidated feature space.
 
 ---
 
@@ -352,10 +344,10 @@ Where:
 - `Y`: Model output (predicted class)
 - `X_i`: Input feature (e.g., elevation)
 
-**Our Findings** (LightGBM Feature Importance):
-- Elevation: 0.342 (highest sensitivity)
-- Horizontal_Distance_To_Hydrology: 0.128
-- Wilderness_Area3: 0.095
+**Key Findings** (LightGBM Feature Importance):
+- Elevation: Highest sensitivity (dominant driver)
+- Horizontal_Distance_To_Hydrology: Secondary importance
+- Wilderness_Area3: Tertiary importance
 
 ---
 
@@ -381,9 +373,9 @@ Where:
 4. **Inference Core** (Layers 5+6+7): Real-time uncertainty + monitoring + deployment
 
 **Design Evolution**:
-- Workshop 2: Ensemble of 3 models (RF + XGBoost + LightGBM)
-- Workshop 3: Single LightGBM model after performance analysis
-- **Rationale**: 95%+ accuracy maintained with 65% less storage, 60% faster inference
+- Workshop 2: Ensemble of 3 models (RF + XGBoost + LightGBM) targeting 95%+
+- Workshop 3: Single LightGBM model achieving 87.55%
+- **Rationale**: Operational efficiency prioritized over accuracy maximization
 
 **Design Principle**: "Reduced complexity and enhanced fault tolerance are not competing objectives but complementary qualities achieved through thoughtful design."
 
@@ -420,14 +412,14 @@ Where:
 
 ### Six Sigma: DMAIC Cycle
 
-**Define**: Prediction errors as defects (target accuracy 95.2%)  
+**Define**: Prediction errors as defects (baseline accuracy 87.55%)  
 **Measure**: Track KL-divergence, PSI, per-class accuracy  
-**Analyze**: Root cause analysis for performance degradation (topographic bias, imbalance)  
+**Analyze**: Root cause analysis for performance gaps (topographic bias, class imbalance)  
 **Improve**: Feature re-engineering, HPO, uncertainty threshold adjustments  
 **Control**: Continuous monitoring, automated retraining, rollback capabilities  
 
 **Process Control Charts**:
-- Accuracy drift (control limit: ±3%)
+- Accuracy drift (alert threshold: ±5% from baseline)
 - KL-divergence (threshold: 0.01 minor, 0.05 major)
 - Confidence decay (alert: >3% weekly decline)
 
@@ -441,7 +433,7 @@ Where:
 |------|------|------------------|
 | **Project Manager / System Architect** | Nicolás Martínez Pineda | Planning, alignment, milestones, documentation |
 | **Data Analyst / Feature Engineer** | Jean Paul Contreras Talero | Preprocessing, transformations, sensitivity monitoring |
-| **Machine Learning Engineer** | Nicolás Martínez Pineda | Model training, HPO, ensemble optimization |
+| **Machine Learning Engineer** | Nicolás Martínez Pineda | Model training, HPO, optimization |
 | **Backend & MLOps Developer** | Gabriel Esteban Gutiérrez Calderón | FastAPI, Redis, PostgreSQL, Grafana dashboards |
 | **Quality & Risk Manager** | Anderson Danilo Martínez Bonilla | Code reviews, risk tracking, ISO/CMMI compliance |
 
@@ -469,17 +461,17 @@ Where:
 ```
 Week 1 (Nov 3-9):   Architecture refinement + detailed planning
 Week 2 (Nov 10-16): Data validation + feature engineering
-Week 3 (Nov 17-23): Ensemble model integration + performance testing
+Week 3 (Nov 17-23): Model integration + performance testing
 Week 4 (Nov 24-30): Deployment setup + monitoring configuration
 Week 5 (Dec 1-6):   Final documentation, review, project delivery
 ```
 
 **Milestones**:
-- ✅ Phase 1: Architecture Review (Nov 8, 2025)
-- ✅ Phase 2: Data Validation & Feature Engineering (Nov 15, 2025)
-- ✅ Phase 3: Model Integration and Optimization (Nov 22, 2025)
-- ✅ Phase 4: Deployment and Monitoring (Nov 29, 2025)
-- ✅ Phase 5: Final Documentation (Dec 6, 2025)
+- ✅ Phase 1: Architecture Review (Nov 8, 2024)
+- ✅ Phase 2: Data Validation & Feature Engineering (Nov 15, 2024)
+- ✅ Phase 3: Model Integration and Optimization (Nov 22, 2024)
+- ✅ Phase 4: Deployment and Monitoring (Nov 29, 2024)
+- ✅ Phase 5: Final Documentation (Dec 6, 2024)
 
 ---
 
@@ -488,21 +480,21 @@ Week 5 (Dec 1-6):   Final documentation, review, project delivery
 ### How Repositories Connect
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ACADEMIC LIFE REPOSITORY                 │
-│                 (Systems Analysis & Design)                 │
-│                                                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
-│  │  Workshop 1  │  │  Workshop 2  │  │  Workshop 3  │    │
-│  │   Analysis   │→ │ Architecture │→ │   Quality    │    │
-│  │   & Chaos    │  │    Design    │  │  Management  │    │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘    │
+┌────────────────────────────────────────────────────────────┐
+│                    ACADEMIC LIFE REPOSITORY                │
+│                 (Systems Analysis & Design)                │
+│                                                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  Workshop 1  │  │  Workshop 2  │  │  Workshop 3  │      │
+│  │   Analysis   │→ │ Architecture │→ │   Quality    │      │
+│  │   & Chaos    │  │    Design    │  │  Management  │      │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
 │         │                  │                  │            │
 │         └──────────────────┼──────────────────┘            │
 │                            │                               │
 │                   THEORETICAL FOUNDATION                   │
 │                  (PDFs, LaTeX, Diagrams)                   │
-└────────────────────────────┼──────────────────────────────┘
+└────────────────────────────┼───────────────────────────────┘
                              │
                              │ INFORMS
                              ↓
@@ -510,11 +502,11 @@ Week 5 (Dec 1-6):   Final documentation, review, project delivery
 │              FOREST TYPE PREDICTION REPOSITORY              │
 │                  (Kaggle Competition Code)                  │
 │                                                             │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
-│  │ Preprocessing│  │   Training   │  │     API      │    │
-│  │   Pipeline   │→ │   Ensemble   │→ │  Deployment  │    │
-│  │   (Modules)  │  │  (RF+XGB+LGB)│  │  (FastAPI)   │    │
-│  └──────────────┘  └──────────────┘  └──────────────┘    │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │ Preprocessing│  │   Training   │  │     API      │       │
+│  │   Pipeline   │→ │  (LightGBM)  │→ │  Deployment  │       │
+│  │   (Modules)  │  │  87.55% acc  │  │  (FastAPI)   │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 │                                                             │
 │                   IMPLEMENTATION ARTIFACTS                  │
 │           (Code, Models, Tests, Docker, Notebooks)          │
@@ -535,35 +527,20 @@ This project implements the architecture documented in:
 📚 [Academic Life - Systems Analysis](https://github.com/nikkaoyy/Academic-Life)
 ```
 
-**In Workshop PDFs** (Workshop 3, Section VI):
-```latex
-\section{Implementation Repository}
-The production code implementing this architecture is available at:
-\url{https://github.com/nikkaoyy/Forest-Type-Prediction}
-
-\noindent Key artifacts include:
-\begin{itemize}
-    \item \texttt{preprocessor.pkl}: Feature engineering pipeline (Modules 3A-3D)
-    \item \texttt{ensemble\_models.pkl}: Trained RF + XGBoost + LightGBM
-    \item \texttt{api/app.py}: FastAPI inference endpoint with uncertainty quantification
-\end{itemize}
-```
-
 ---
 
 ## 👥 Team
 
 **Authors**:
-- **Nicolás Martínez Pineda** (20241020098) - Project Manager, ML Engineer
+- **Nicolás Martínez Pineda** (20241020098) - Project Manager, ML Engineer & Data Analyst
 - **Anderson Danilo Martínez Bonilla** (20241020107) - QA Manager
 - **Gabriel Esteban Gutiérrez Calderón** (20221020003) - MLOps Developer
-- **Jean Paul Contreras Talero** (20242020131) - Data Analyst
+- **Jean Paul Contreras Talero** (20242020131) 
 
-**Instructor**: [Professor Name]  
 **Institution**: Universidad Distrital Francisco José de Caldas  
 **Course**: Systems Analysis and Design  
 **Program**: Computer Engineering  
-**Semester**: 2024-2
+**Semester**: 2025-2
 
 ---
 
@@ -602,23 +579,25 @@ The production code implementing this architecture is available at:
 - Systems thinking reveals hidden interdependencies (aspect-elevation coupling)
 - Chaos theory provides actionable uncertainty quantification
 - Quality standards (ISO, CMMI) structure development processes
-- Architecture evolves through iterative refinement (7 → 4 layers, ensemble → single model)
-- Production systems require fault tolerance, not just accuracy
-- **Simplicity is a feature**: Single LightGBM outperforms ensemble in deployment contexts
+- Architecture evolves through iterative refinement (7 → 4 layers)
+- Production systems balance multiple objectives beyond raw accuracy
+- **Simplicity is a feature**: Single LightGBM (87.55%) preferred over complex ensemble for operational reasons
+- **Trade-offs are inevitable**: Theoretical targets (95%+) vs. practical constraints (speed, memory, maintainability)
 
 **Challenges Overcome**:
 - Balancing ecological sensitivity with computational efficiency
 - Translating theoretical chaos concepts into operational code
+- Managing expectations: 87.55% accuracy vs. 95%+ theoretical target
 - Deciding between ensemble complexity vs. single-model simplicity
-- Performance-cost trade-off analysis (ensemble vs. LightGBM only)
 - Maintaining reproducibility across team members
 - Aligning academic timelines with software development cycles
 
 **Future Directions**:
+- Hyperparameter optimization to close the accuracy gap (87.55% → 90%+)
 - Multi-region validation (beyond Colorado)
 - Temporal drift monitoring with seasonal retraining
 - Integration with GIS platforms for real-time field predictions
-- Ensemble vs single-model performance monitoring in production
+- Performance monitoring and continuous improvement in production
 - Explainability dashboards for non-technical stakeholders
 
 ---
@@ -671,17 +650,15 @@ This academic work is shared under the **Creative Commons Attribution-NonCommerc
 ## 📧 Contact
 
 **Primary Contact**: Nicolás Martínez Pineda  
-**Email**: [student email]  
 **GitHub**: [@nikkaoyy](https://github.com/nikkaoyy)
 
-**Institution**: Universidad Distrital Francisco José de Caldas  
-**Course Website**: [Systems Analysis and Design Course Page]
+**Institution**: Universidad Distrital Francisco José de Caldas
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **Professor [Name]** for guidance on systems thinking and architecture design
+- **Course Professor** for guidance on systems thinking and architecture design
 - **Universidad Distrital** for providing academic resources and infrastructure
 - **Kaggle Community** for the Forest Cover Type dataset
 - **Open Source Contributors** to scikit-learn, XGBoost, LightGBM, FastAPI, and MLflow
@@ -695,6 +672,7 @@ This repository demonstrates:
 - ✅ Theoretical rigor with practical implementation focus
 - ✅ Cross-disciplinary integration (ecology + CS + management)
 - ✅ Complete documentation from analysis to production
+- ✅ Honest reporting of results and trade-offs (87.55% accuracy achieved)
 - ✅ Reproducible academic research practices
 
 **If this helped your learning, please star the repository!**
@@ -705,4 +683,4 @@ This repository demonstrates:
 
 **📚 Course Materials**: See `Workshops/` folder for complete PDF reports
 
-**🎯 Project Status**: ✅ Complete (December 2024)
+**🎯 Project Status**: ✅ Complete (December 2025)
