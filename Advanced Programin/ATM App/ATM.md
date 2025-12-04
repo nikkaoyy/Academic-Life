@@ -1,4 +1,4 @@
-# 🏦 Sistema ATM - Proyecto de Programación Avanzada
+# 🏦 ATM System - Advanced Programming Project
 
 <div align="center">
 
@@ -6,80 +6,80 @@
 ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white)
 
-**Sistema de Cajero Automático con Arquitectura Cliente-Servidor**
+**Automated Teller Machine System with Client-Server Architecture**
 
-[Ver Repositorio Completo →](https://github.com/nikkaoyy/Cajero-ATM)
+[View Complete Repository →](https://github.com/nikkaoyy/Cajero-ATM)
 
 </div>
 
 ---
 
-## 📖 Sobre el Proyecto
+## 📖 About the Project
 
-Sistema bancario completo de cajero automático (ATM) desarrollado como proyecto final para el curso de **Programación Avanzada** en la Universidad Distrital. El proyecto implementa una arquitectura cliente-servidor profesional con REST API, aplicando patrones de diseño y principios SOLID.
+Complete ATM banking system developed as a final project for the **Advanced Programming** course at Universidad Distrital. The project implements a professional client-server architecture with REST API, applying design patterns and SOLID principles.
 
-### 🎯 Objetivos de Aprendizaje Cumplidos
+### 🎯 Accomplished Learning Objectives
 
-✅ Implementación de patrones de diseño (Singleton, Factory, MVC)  
-✅ Desarrollo de API REST con Flask  
-✅ Persistencia de datos con ORM (SQLAlchemy)  
-✅ Arquitectura en capas (Presentation, Business, Data)  
-✅ Aplicación de principios SOLID  
-✅ Frontend SPA con JavaScript vanilla  
-✅ Gestión de seguridad (bcrypt, sesiones)  
-✅ Testing y validación de API  
+✅ Implementation of design patterns (Singleton, Factory, MVC)  
+✅ REST API development with Flask  
+✅ Data persistence with ORM (SQLAlchemy)  
+✅ Layered architecture (Presentation, Business, Data)  
+✅ Application of SOLID principles  
+✅ SPA frontend with vanilla JavaScript  
+✅ Security management (bcrypt, sessions)  
+✅ API testing and validation  
 
 ---
 
-## 🚀 Acceso Rápido
+## 🚀 Quick Access
 
-### 🔗 Repositorio Principal del Proyecto
+### 🔗 Main Project Repository
 
 👉 **[github.com/nikkaoyy/Cajero-ATM](https://github.com/nikkaoyy/Cajero-ATM)**
 
-El repositorio completo contiene:
-- 📂 Código fuente completo (Backend + Frontend)
-- 📘 Documentación técnica detallada
-- 🧪 Suite de pruebas automatizadas
-- 📊 Diagramas de arquitectura
-- 🎓 Guías de instalación y uso
-- 📝 Documentación de API
+The complete repository contains:
+- 📂 Complete source code (Backend + Frontend)
+- 📘 Detailed technical documentation
+- 🧪 Automated test suite
+- 📊 Architecture diagrams
+- 🎓 Installation and usage guides
+- 📝 API documentation
 
 ---
 
-## ✨ Características Principales
+## ✨ Main Features
 
-### 💳 Funcionalidades Implementadas
+### 💳 Implemented Functionalities
 
-| Característica | Descripción | Estado |
-|----------------|-------------|--------|
-| 🔐 **Autenticación** | Login con tarjeta y PIN (bcrypt) | ✅ |
-| 💰 **Consulta de Saldo** | Ver saldo y límites disponibles | ✅ |
-| 💸 **Retiros** | Retiro con validación de límites diarios | ✅ |
-| 💵 **Depósitos** | Depósito en efectivo y cheque | ✅ |
-| 🧾 **Pago de Recibos** | Pago de servicios públicos | ✅ |
-| 🎟️ **Compra de Entradas** | Compra con código generado | ✅ |
-| 📊 **Historial** | Registro completo de operaciones | ✅ |
-| 🏧 **Múltiples Cajeros** | Sistema con varios cajeros | ✅ |
+| Feature | Description | Status |
+|---------|-------------|--------|
+| 🔐 **Authentication** | Login with card and PIN (bcrypt) | ✅ |
+| 💰 **Balance Inquiry** | View balance and available limits | ✅ |
+| 💸 **Withdrawals** | Withdrawal with daily limit validation | ✅ |
+| 💵 **Deposits** | Cash and check deposits | ✅ |
+| 🧾 **Bill Payments** | Utility service payments | ✅ |
+| 🎟️ **Ticket Purchases** | Purchase with generated code | ✅ |
+| 📊 **History** | Complete operation log | ✅ |
+| 🏧 **Multiple ATMs** | System with multiple ATMs | ✅ |
 
-### 🔒 Seguridad
+### 🔒 Security
 
-- Hash de PINs con **bcrypt**
-- Sesiones con timeout automático (30 min)
-- Bloqueo tras 3 intentos fallidos
-- Validación de entrada en backend y frontend
-- CORS configurado restrictivamente
+- PIN hashing with **bcrypt**
+- Sessions with automatic timeout (30 min)
+- Blocking after 3 failed attempts
+- Input validation on backend and frontend
+- Restrictive CORS configuration
 
 ---
 
-## 🏗️ Arquitectura Técnica
+## 🏗️ Technical Architecture
 
 ```
 ┌─────────────────────────────────────────┐
 │         FRONTEND (JavaScript)            │
-│  • SPA con Fetch API                    │
-│  • Interfaz ATM interactiva             │
-│  • Validación de entrada                │
+│  • SPA with Fetch API                   │
+│  • Interactive ATM interface            │
+│  • Input validation                     │
 └──────────────┬──────────────────────────┘
                │ REST API (HTTP/JSON)
                ▼
@@ -88,35 +88,35 @@ El repositorio completo contiene:
 │                                          │
 │  ┌────────────────────────────────┐    │
 │  │      API Layer (routes.py)     │    │
-│  │   12 endpoints REST            │    │
+│  │   12 REST endpoints            │    │
 │  └──────────┬─────────────────────┘    │
 │             │                            │
 │  ┌──────────▼─────────────────────┐    │
 │  │   Services (Business Logic)    │    │
-│  │ • AutentificacionService       │    │
-│  │ • BancoService                 │    │
+│  │ • AuthenticationService        │    │
+│  │ • BankService                  │    │
 │  └──────────┬─────────────────────┘    │
 │             │                            │
 │  ┌──────────▼─────────────────────┐    │
 │  │   Models (SQLAlchemy ORM)      │    │
-│  │ 6 modelos + herencia           │    │
+│  │ 6 models + inheritance         │    │
 │  └──────────┬─────────────────────┘    │
 └─────────────┼──────────────────────────┘
               │ SQL
               ▼
     ┌──────────────────┐
     │  MySQL Database  │
-    │   6 tablas       │
+    │   6 tables       │
     └──────────────────┘
 ```
 
-### Tecnologías Utilizadas
+### Technologies Used
 
 **Backend:**
 - Python 3.8+
-- Flask 3.0 (Framework web)
+- Flask 3.0 (Web framework)
 - SQLAlchemy 2.0 (ORM)
-- bcrypt (Hashing de PINs)
+- bcrypt (PIN hashing)
 - Flask-CORS (CORS management)
 
 **Frontend:**
@@ -124,97 +124,97 @@ El repositorio completo contiene:
 - JavaScript ES6+ (Vanilla)
 - Fetch API (HTTP requests)
 
-**Base de Datos:**
+**Database:**
 - MySQL 5.7+
-- 6 tablas relacionales
-- Constraints de integridad
+- 6 relational tables
+- Integrity constraints
 
 ---
 
-## 📊 Patrones y Principios Aplicados
+## 📊 Applied Patterns and Principles
 
-### 🎨 Patrones de Diseño
+### 🎨 Design Patterns
 
-| Patrón | Implementación | Ubicación |
-|--------|----------------|-----------|
-| **Singleton** | Instancia única para registro de operaciones | `RegistroOperaciones.py` |
-| **Factory** | Creación centralizada de tarjetas | `Banco.emitir_tarjeta()` |
-| **MVC** | Separación Modelo-Vista-Controlador | Todo el backend |
-| **Repository** | Abstracción de acceso a datos | Modelos SQLAlchemy |
-| **Decorator** | Validación de autenticación | `@requiere_autenticacion` |
+| Pattern | Implementation | Location |
+|---------|----------------|----------|
+| **Singleton** | Single instance for operation registry | `RegistroOperaciones.py` |
+| **Factory** | Centralized card creation | `Banco.emitir_tarjeta()` |
+| **MVC** | Model-View-Controller separation | Entire backend |
+| **Repository** | Data access abstraction | SQLAlchemy Models |
+| **Decorator** | Authentication validation | `@requiere_autenticacion` |
 
-### 🧱 Principios SOLID
+### 🧱 SOLID Principles
 
-✅ **Single Responsibility**: Cada clase tiene una única responsabilidad  
-✅ **Open/Closed**: Extensible sin modificar código existente  
-✅ **Liskov Substitution**: Subclases de `Operacion` son intercambiables  
-✅ **Interface Segregation**: Interfaces específicas por necesidad  
-✅ **Dependency Inversion**: Dependencia de abstracciones (Services)  
+✅ **Single Responsibility**: Each class has a single responsibility  
+✅ **Open/Closed**: Extensible without modifying existing code  
+✅ **Liskov Substitution**: `Operation` subclasses are interchangeable  
+✅ **Interface Segregation**: Specific interfaces per need  
+✅ **Dependency Inversion**: Dependency on abstractions (Services)  
 
 ---
 
-## 📈 Resultados de Pruebas
+## 📈 Test Results
 
-El sistema incluye una suite completa de pruebas automatizadas:
+The system includes a complete automated test suite:
 
 ```bash
 python scripts/test_api.py
 ```
 
-**Resultado:**
+**Result:**
 ```
 ============================================================
-  RESUMEN DE PRUEBAS
+  TEST SUMMARY
 ============================================================
 Health Check...................................... ✅ PASS
-Listar Cajeros.................................... ✅ PASS
+List ATMs......................................... ✅ PASS
 Login............................................. ✅ PASS
-Consultar Saldo................................... ✅ PASS
-Realizar Retiro................................... ✅ PASS
-Realizar Depósito................................. ✅ PASS
-Pago de Recibo.................................... ✅ PASS
-Compra de Entradas................................ ✅ PASS
-Historial de Operaciones.......................... ✅ PASS
-Estadísticas...................................... ✅ PASS
+Check Balance..................................... ✅ PASS
+Perform Withdrawal................................ ✅ PASS
+Perform Deposit................................... ✅ PASS
+Bill Payment...................................... ✅ PASS
+Ticket Purchase................................... ✅ PASS
+Transaction History............................... ✅ PASS
+Statistics........................................ ✅ PASS
 Logout............................................ ✅ PASS
 
-Total: 12/12 pruebas exitosas ✅
+Total: 12/12 successful tests ✅
 ```
 
 ---
 
-## 🎓 Conceptos de Programación Avanzada
+## 🎓 Advanced Programming Concepts
 
-### POO (Programación Orientada a Objetos)
-- ✅ Encapsulamiento con atributos privados
-- ✅ Herencia (Operacion → Retiro, Deposito, etc.)
-- ✅ Polimorfismo (método `ejecutar()` en subclases)
-- ✅ Abstracción (clases base abstractas)
+### OOP (Object-Oriented Programming)
+- ✅ Encapsulation with private attributes
+- ✅ Inheritance (Operation → Withdrawal, Deposit, etc.)
+- ✅ Polymorphism (`execute()` method in subclasses)
+- ✅ Abstraction (abstract base classes)
 
-### Arquitectura de Software
-- ✅ Arquitectura en 3 capas (Presentation, Business, Data)
-- ✅ REST API con endpoints documentados
-- ✅ Cliente-Servidor
-- ✅ ORM para abstracción de persistencia
+### Software Architecture
+- ✅ 3-layer architecture (Presentation, Business, Data)
+- ✅ REST API with documented endpoints
+- ✅ Client-Server
+- ✅ ORM for persistence abstraction
 
-### Buenas Prácticas
-- ✅ Código documentado con docstrings
-- ✅ Type hints en Python
-- ✅ Manejo de excepciones robusto
-- ✅ Validación de entrada en múltiples capas
-- ✅ Transacciones con rollback automático
+### Best Practices
+- ✅ Code documented with docstrings
+- ✅ Python type hints
+- ✅ Robust exception handling
+- ✅ Input validation at multiple layers
+- ✅ Transactions with automatic rollback
 
 ---
 
-## 📸 Capturas de Pantalla
+## 📸 Screenshots
 
-### Pantalla de Login
+### Login Screen
 ```
 ┌─────────────────────────────────────┐
 │    🏦 BANCO DEL SOL - ATM           │
 ├─────────────────────────────────────┤
 │                                     │
-│  Número de Tarjeta:                 │
+│  Card Number:                       │
 │  ┌───────────────────────────────┐ │
 │  │ XXXX-XXXX-XXXX-XXXX          │ │
 │  └───────────────────────────────┘ │
@@ -234,142 +234,142 @@ Total: 12/12 pruebas exitosas ✅
 │  │⌫│0│C│                           │
 │  └─┴─┴─┘                           │
 │                                     │
-│  [    Iniciar Sesión    ]          │
-│  [       Cancelar       ]          │
+│  [      Login       ]               │
+│  [      Cancel      ]               │
 └─────────────────────────────────────┘
 ```
 
-### Menú Principal
+### Main Menu
 ```
 ┌─────────────────────────────────────┐
-│  Hola, Juan                         │
-│  Seleccione una operación      [⎋] │
+│  Hello, Juan                        │
+│  Select an operation           [⎋] │
 ├─────────────────────────────────────┤
 │                                     │
 │  ┌──────────┐  ┌──────────┐       │
 │  │    💰    │  │    💸    │       │
-│  │  Saldo   │  │  Retiro  │       │
+│  │ Balance  │  │ Withdraw │       │
 │  └──────────┘  └──────────┘       │
 │                                     │
 │  ┌──────────┐  ┌──────────┐       │
 │  │    💵    │  │    🧾    │       │
-│  │ Depósito │  │   Pago   │       │
+│  │ Deposit  │  │ Payment  │       │
 │  └──────────┘  └──────────┘       │
 │                                     │
 │  ┌──────────┐  ┌──────────┐       │
 │  │    🎟️    │  │    ❓    │       │
-│  │ Entradas │  │  Ayuda   │       │
+│  │ Tickets  │  │   Help   │       │
 │  └──────────┘  └──────────┘       │
 └─────────────────────────────────────┘
 ```
 
 ---
 
-## 📚 Documentación Completa
+## 📚 Complete Documentation
 
-Para más información, consulta el **[repositorio principal](https://github.com/nikkaoyy/Cajero-ATM)** que incluye:
+For more information, visit the **[main repository](https://github.com/nikkaoyy/Cajero-ATM)** which includes:
 
-📖 **Documentación técnica completa**
-- Arquitectura detallada
-- Diagramas UML (clases, secuencia, ER)
-- Explicación de cada componente
-- Guía de desarrollo
+📖 **Complete technical documentation**
+- Detailed architecture
+- UML diagrams (classes, sequence, ER)
+- Explanation of each component
+- Development guide
 
-🚀 **Guías de instalación**
-- Setup paso a paso
-- Configuración de base de datos
+🚀 **Installation guides**
+- Step-by-step setup
+- Database configuration
 - Troubleshooting
 
 📡 **API Documentation**
-- Todos los endpoints documentados
-- Ejemplos de requests/responses
-- Códigos de error
+- All documented endpoints
+- Request/response examples
+- Error codes
 
 🧪 **Testing**
-- Suite de pruebas automatizadas
-- Instrucciones para ejecutar tests
-- Casos de prueba documentados
+- Automated test suite
+- Test execution instructions
+- Documented test cases
 
 ---
 
-## 👨‍💻 Equipo de Desarrollo
+## 👨‍💻 Development Team
 
-**Desarrolladores:**
+**Developers:**
 - Nicolás Martínez Pineda ([@nikkaoyy](https://github.com/nikkaoyy))
 - Samuele Leonardo Acosta Cruz ([@Samuelleon2810](https://github.com/Samuelleon2810))
 - David Mateo Días Pérez
 
-**Institución:**  
+**Institution:**  
 Universidad Distrital Francisco José de Caldas  
-Facultad de Ingeniería  
-Ingeniería de Sistemas
+Faculty of Engineering  
+Systems Engineering
 
-**Curso:**  
-Programación Avanzada - 2025-1
+**Course:**  
+Advanced Programming - 2025-1
 
 ---
 
-## 📊 Métricas del Proyecto
+## 📊 Project Metrics
 
-| Métrica | Valor |
-|---------|-------|
-| **Líneas de código** | ~5,000+ |
-| **Archivos** | 30+ |
+| Metric | Value |
+|--------|-------|
+| **Lines of code** | ~5,000+ |
+| **Files** | 30+ |
 | **Commits** | 50+ |
-| **Tiempo de desarrollo** | 4 semanas |
-| **Tests automatizados** | 12 |
-| **Endpoints API** | 12 |
-| **Modelos ORM** | 6 |
-| **Tablas BD** | 6 |
+| **Development time** | 4 weeks |
+| **Automated tests** | 12 |
+| **API endpoints** | 12 |
+| **ORM models** | 6 |
+| **DB tables** | 6 |
 
 ---
 
-## 🔗 Enlaces Importantes
+## 🔗 Important Links
 
-- 🏠 **[Repositorio Principal](https://github.com/nikkaoyy/Cajero-ATM)** - Código fuente completo
-- 📘 **[Documentación Técnica](https://github.com/nikkaoyy/Cajero-ATM/blob/master/DOCUMENTACION.md)** - Arquitectura detallada
-- 🐛 **[Issues](https://github.com/nikkaoyy/Cajero-ATM/issues)** - Reportar bugs o sugerencias
-- 📧 **Contacto**: nmartinezp@udistrital.edu.co
-
----
-
-## 🌟 Logros del Proyecto
-
-✅ Sistema funcional al 100%  
-✅ 12/12 pruebas automatizadas pasadas  
-✅ Arquitectura escalable y mantenible  
-✅ Código documentado y seguimiento de estándares  
-✅ Seguridad implementada (bcrypt, sesiones, validaciones)  
-✅ API REST completamente funcional  
-✅ Frontend responsive e intuitivo  
-✅ Patrones de diseño aplicados correctamente  
+- 🏠 **[Main Repository](https://github.com/nikkaoyy/Cajero-ATM)** - Complete source code
+- 📘 **[Technical Documentation](https://github.com/nikkaoyy/Cajero-ATM/blob/master/DOCUMENTACION.md)** - Detailed architecture
+- 🐛 **[Issues](https://github.com/nikkaoyy/Cajero-ATM/issues)** - Report bugs or suggestions
+- 📧 **Contact**: nmartinezp@udistrital.edu.co
 
 ---
 
-## 📜 Licencia
+## 🌟 Project Achievements
 
-Este proyecto está bajo la **GNU General Public License v3.0 (GPL-3.0)**.
+✅ 100% functional system  
+✅ 12/12 automated tests passed  
+✅ Scalable and maintainable architecture  
+✅ Documented code following standards  
+✅ Implemented security (bcrypt, sessions, validations)  
+✅ Fully functional REST API  
+✅ Responsive and intuitive frontend  
+✅ Correctly applied design patterns  
+
+---
+
+## 📜 License
+
+This project is under the **GNU General Public License v3.0 (GPL-3.0)**.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-### Resumen de la Licencia
+### License Summary
 
-✅ **Software Libre**: Puedes usar, estudiar, compartir y mejorar este software  
-🔓 **Código Abierto**: Todo el código fuente está disponible públicamente  
-↩️ **Copyleft**: Las modificaciones deben compartirse bajo la misma licencia  
-🎓 **Uso Académico**: Perfecto para aprendizaje y enseñanza  
+✅ **Free Software**: You can use, study, share, and improve this software  
+🔓 **Open Source**: All source code is publicly available  
+↩️ **Copyleft**: Modifications must be shared under the same license  
+🎓 **Academic Use**: Perfect for learning and teaching  
 
-Para detalles completos, consulta el [repositorio principal](https://github.com/nikkaoyy/Cajero-ATM/blob/master/LICENSE).
+For complete details, see the [main repository](https://github.com/nikkaoyy/Cajero-ATM/blob/master/LICENSE).
 
 ---
 
 <div align="center">
 
-**⭐ [Ver Código Completo →](https://github.com/nikkaoyy/Cajero-ATM) ⭐**
+**⭐ [View Complete Code →](https://github.com/nikkaoyy/Cajero-ATM) ⭐**
 
 ---
 
-*Proyecto desarrollado como parte del curso de Programación Avanzada*  
+*Project developed as part of the Advanced Programming course*  
 *Universidad Distrital Francisco José de Caldas - 2025*
 
 </div>
