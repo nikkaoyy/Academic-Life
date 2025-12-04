@@ -296,7 +296,7 @@ Para más información, consulta el **[repositorio principal](https://github.com
 
 **Desarrolladores:**
 - Nicolás Martínez Pineda ([@nikkaoyy](https://github.com/nikkaoyy))
-- Samuele Leonardo Acosta Cruz
+- Samuele Leonardo Acosta Cruz ([@Samuelleon2810](https://github.com/Samuelleon2810))
 - David Mateo Días Pérez
 
 **Institución:**  
